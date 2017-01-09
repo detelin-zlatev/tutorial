@@ -5,6 +5,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/owners/login/login';
 import { RegisterPage } from '../pages/owners/register/register';
 import { PublishPage } from '../pages/owners/publish/publish';
+import { PublishedPage } from '../pages/owners/published/published';
 import { SearchPage } from '../pages/clients/search/search';
 import { SaloonsPage } from '../pages/clients/saloons/saloons';
 import { SaloonPage } from '../pages/clients/saloon/saloon';
@@ -17,6 +18,7 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     SearchPage,
     RegisterPage,
     PublishPage,
+    PublishedPage,
     SaloonsPage,
     SaloonPage
   ],
@@ -31,6 +33,7 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     SearchPage,
     RegisterPage,
     PublishPage,
+    PublishedPage,
     SaloonsPage,
     SaloonPage
   ],

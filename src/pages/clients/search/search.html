@@ -1,8 +1,5 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Търсене на салони
-    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -10,7 +7,7 @@
   <ion-list>
     <ion-item>
       <ion-label>Категория</ion-label>
-      <ion-select [(ngModel)]="gaming">
+      <ion-select [(ngModel)]="category">
         <ion-option value="1">Фризьорски салони</ion-option>
       </ion-select>
     </ion-item>
@@ -20,7 +17,7 @@
   <ion-list>
     <ion-item>
       <ion-label>Град</ion-label>
-      <ion-select [(ngModel)]="gaming">
+      <ion-select [(ngModel)]="city">
         <ion-option value="1">Варна</ion-option>
         <ion-option value="2">София</ion-option>
       </ion-select>
@@ -29,7 +26,7 @@
 
   <ion-item>
     <ion-label>В промоция</ion-label>
-    <ion-checkbox color="dark" checked="true"></ion-checkbox>
+    <ion-toggle checked="false"></ion-toggle>
   </ion-item>
 
   <button ion-button full round>Търси</button>
