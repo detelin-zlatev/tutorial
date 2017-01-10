@@ -9,6 +9,7 @@ import { PublishPage } from '../pages/owners/publish/publish';
 import { PublishedPage } from '../pages/owners/published/published';
 import { PortfolioPage } from '../pages/owners/portfolio/portfolio';
 import { PromotionsPage } from '../pages/owners/promotions/promotions';
+import { EditPage } from '../pages/owners/edit/edit';
 import { SearchPage } from '../pages/clients/search/search';
 import { SaloonsPage } from '../pages/clients/saloons/saloons';
 import { SaloonPage } from '../pages/clients/saloon/saloon';
@@ -25,6 +26,7 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     PortfolioPage,
     PromotionsPage,
     SaloonsPage,
+    EditPage,
     SaloonPage,
     DetailsPage
   ],
@@ -43,6 +45,7 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     PortfolioPage,
     PromotionsPage,
     SaloonsPage,
+    EditPage,
     SaloonPage,
     DetailsPage
   ],
