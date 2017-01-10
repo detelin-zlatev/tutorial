@@ -6,6 +6,9 @@ import { LoginPage } from '../pages/owners/login/login';
 import { RegisterPage } from '../pages/owners/register/register';
 import { PublishPage } from '../pages/owners/publish/publish';
 import { PublishedPage } from '../pages/owners/published/published';
+import { PortfolioPage } from '../pages/owners/portfolio/portfolio';
+import { PromotionsPage } from '../pages/owners/promotions/promotions';
+import { PromotionPage } from '../pages/owners/promotion/promotion';
 import { SearchPage } from '../pages/clients/search/search';
 import { SaloonsPage } from '../pages/clients/saloons/saloons';
 import { SaloonPage } from '../pages/clients/saloon/saloon';
@@ -19,6 +22,9 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     RegisterPage,
     PublishPage,
     PublishedPage,
+    PortfolioPage,
+    PromotionsPage,
+    PromotionPage,
     SaloonsPage,
     SaloonPage
   ],
@@ -34,6 +40,9 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     RegisterPage,
     PublishPage,
     PublishedPage,
+    PortfolioPage,
+    PromotionsPage,
+    PromotionPage,
     SaloonsPage,
     SaloonPage
   ],
