@@ -5,10 +5,10 @@ import { NavController } from 'ionic-angular';
 import {PublishedPage} from '../published/published'
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+  selector: 'page-details',
+  templateUrl: 'details.html'
 })
-export class LoginPage {
+export class DetailsPage {
 
   constructor(public navCtrl: NavController) {
     
@@ -19,5 +19,4 @@ export class LoginPage {
     //causing the nav controller to animate the new page in
     this.navCtrl.push(PublishedPage);
   }
-
 }

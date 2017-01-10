@@ -4,11 +4,11 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/owners/login/login';
 import { RegisterPage } from '../pages/owners/register/register';
+import { DetailsPage } from '../pages/owners/details/details';
 import { PublishPage } from '../pages/owners/publish/publish';
 import { PublishedPage } from '../pages/owners/published/published';
 import { PortfolioPage } from '../pages/owners/portfolio/portfolio';
 import { PromotionsPage } from '../pages/owners/promotions/promotions';
-import { PromotionPage } from '../pages/owners/promotion/promotion';
 import { SearchPage } from '../pages/clients/search/search';
 import { SaloonsPage } from '../pages/clients/saloons/saloons';
 import { SaloonPage } from '../pages/clients/saloon/saloon';
@@ -24,9 +24,9 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     PublishedPage,
     PortfolioPage,
     PromotionsPage,
-    PromotionPage,
     SaloonsPage,
-    SaloonPage
+    SaloonPage,
+    DetailsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -42,9 +42,9 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     PublishedPage,
     PortfolioPage,
     PromotionsPage,
-    PromotionPage,
     SaloonsPage,
-    SaloonPage
+    SaloonPage,
+    DetailsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

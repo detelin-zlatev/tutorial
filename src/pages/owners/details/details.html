@@ -1,0 +1,59 @@
+<ion-content>
+
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Категория</ion-label>
+      <ion-select [(ngModel)]="category">
+        <ion-option value="1">Фризьорски салони</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-label stacked>Име</ion-label>
+    <ion-input type="text" value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+   <ion-label stacked>Описание</ion-label>
+   <ion-textarea rows="6" [(ngModel)]="msg"></ion-textarea>
+ </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Град</ion-label>
+      <ion-select [(ngModel)]="city">
+        <ion-option value="1">Варна</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+   <ion-label stacked>Адрес</ion-label>
+   <ion-textarea rows="2" [(ngModel)]="address"></ion-textarea>
+ </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Email</ion-label>
+    <ion-input type="text" value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Телефон 1</ion-label>
+    <ion-input type="text" value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Телефон 2</ion-label>
+    <ion-input type="text" value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Телефон 3</ion-label>
+    <ion-input type="text" value=""></ion-input>
+  </ion-item>
+
+  <div padding>
+    <button ion-button color="primary" block (click)="goToPublished()">Запази</button>
+  </div>
+</ion-content>
