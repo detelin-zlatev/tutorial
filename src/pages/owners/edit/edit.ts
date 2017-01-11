@@ -12,4 +12,8 @@ export class EditPage {
     
   }
 
+  close() {
+      this.navCtrl.pop();
+  }
+
 }

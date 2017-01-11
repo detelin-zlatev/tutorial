@@ -1,48 +1,83 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Салони
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content class="grey">
+  <div padding>
+    <button ion-button color="primary" block (click)="goToSearch()" icon-left><ion-icon name='search'></ion-icon> Ново Търсене</button>
+  </div>
 
-<ion-content>
-   <ion-list>
-	<ion-item>
-	    <ion-thumbnail item-left>
-	      <img src="http://ionicframework.com/img/docs/siamese-dream.jpg">
-	    </ion-thumbnail>
-	    <h2>Салон 1</h2>
-            <p>Фризьорски салони</p>
-      	    <h6>гр. Варна, бул. Варненчик 34</h6>
-	    <button ion-button clear item-right>Виж</button>
-	</ion-item>
-	<ion-item>
-	    <ion-thumbnail item-left>
-	      <img src="http://ionicframework.com/img/docs/siamese-dream.jpg">
-	    </ion-thumbnail>
-	    <h2>Салон 2</h2>
-            <p>Фризьорски салони</p>
-      	    <h6>гр. Варна, бул. Варненчик 34</h6>
-	    <button ion-button clear item-right>Виж</button>
-	</ion-item>
-	<ion-item>
-	    <ion-thumbnail item-left>
-	      <img src="http://ionicframework.com/img/docs/siamese-dream.jpg">
-	    </ion-thumbnail>
-	    <h2>Салон 3</h2>
-            <p>Фризьорски салони</p>
-      	    <h6>гр. Варна, бул. Варненчик 34</h6>
-	    <button ion-button clear item-right>Виж</button>
-	</ion-item>
-	<ion-item>
-	    <ion-thumbnail item-left>
-	      <img src="http://ionicframework.com/img/docs/siamese-dream.jpg">
-	    </ion-thumbnail>
-	    <h2>Салон 4</h2>
-            <p>Фризьорски салони</p>
-      	    <h6>гр. Варна, бул. Варненчик 34</h6>
-	    <button ion-button clear item-right>Виж</button>
-	</ion-item>
-   </ion-list>
+   <ion-card (click)="goToSaloon()">
+	  <img src="https://ionicframework.com/dist/preview-app/www/assets/img/badu-live.png"/>
+	  <ion-card-content>
+	    <ion-card-title>
+	      Салон 1
+	    </ion-card-title>
+	    <p>
+	      гр. Варна, бул. Варненчик 34
+	    </p>
+	  </ion-card-content>
+
+	  <ion-row no-padding>
+              <ion-col text-right>
+		<button ion-button clear small icon-left>
+		  Фризьорски салони
+		</button>
+	      </ion-col>
+	      <ion-col text-right>
+		<button ion-button clear small icon-left>
+		  <ion-icon name='eye'></ion-icon>
+		  Виж
+		</button>
+	      </ion-col>
+	    </ion-row>
+   </ion-card>
+
+   <ion-card (click)="goToSaloon()">
+	  <img src="https://ionicframework.com/dist/preview-app/www/assets/img/badu-live.png"/>
+	  <ion-card-content>
+	    <ion-card-title>
+	      Салон 1
+	    </ion-card-title>
+	    <p>
+	      гр. Варна, бул. Варненчик 34
+	    </p>
+	  </ion-card-content>
+
+	  <ion-row no-padding>
+              <ion-col text-right>
+		<button ion-button clear small icon-left>
+		  Фризьорски салони
+		</button>
+	      </ion-col>
+	      <ion-col text-right>
+		<button ion-button clear small icon-left>
+		  <ion-icon name='eye'></ion-icon>
+		  Виж
+		</button>
+	      </ion-col>
+	    </ion-row>
+   </ion-card>
+
+<ion-card (click)="goToSaloon()">
+	  <img src="https://ionicframework.com/dist/preview-app/www/assets/img/badu-live.png"/>
+	  <ion-card-content>
+	    <ion-card-title>
+	      Салон 1
+	    </ion-card-title>
+	    <p>
+	      гр. Варна, бул. Варненчик 34
+	    </p>
+	  </ion-card-content>
+
+	  <ion-row no-padding>
+              <ion-col text-right>
+		<button ion-button clear small icon-left>
+		  Фризьорски салони
+		</button>
+	      </ion-col>
+	      <ion-col text-right>
+		<button ion-button clear small icon-left>
+		  <ion-icon name='eye'></ion-icon>
+		  Виж
+		</button>
+	      </ion-col>
+	    </ion-row>
+   </ion-card>
 </ion-content>

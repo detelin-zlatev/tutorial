@@ -1,3 +1,25 @@
-<ion-content padding>
-ааа
+<ion-content>
+    <ion-item>
+        <ion-label stacked>Име</ion-label>
+        <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label stacked>Описание</ion-label>
+        <ion-textarea rows="6" [(ngModel)]="msg"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+        <ion-label stacked>Стара цена</ion-label>
+        <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label stacked>Нова цена</ion-label>
+        <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+  <div padding>
+    <button ion-button color="primary" block (click)="close()">Запази</button>
+  </div>
 </ion-content>
