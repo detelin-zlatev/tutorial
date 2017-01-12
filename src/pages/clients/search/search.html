@@ -1,9 +1,10 @@
 <ion-header>
-  <ion-navbar>
-  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-title>Търсене</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <ion-list>
     <ion-item>
       <ion-label>Категория</ion-label>
@@ -28,6 +29,9 @@
     <ion-label>В промоция</ion-label>
     <ion-toggle checked="false"></ion-toggle>
   </ion-item>
-
-  <button ion-button full round (click)="goToSaloons()">Търси</button>
+  
+  <div padding>
+  <button ion-button block (click)="goToSaloons()" icon-left><ion-icon name='search'></ion-icon> Търси</button>
+  </div>
+  
 </ion-content>

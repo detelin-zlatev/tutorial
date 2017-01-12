@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
       Вход
     </ion-title>
@@ -24,4 +24,18 @@
   <div padding>
     <button ion-button color="primary" block (click)="goToPublished()">Влез</button>
   </div>
+  <ion-row no-padding>
+      <ion-col text-right>
+	<button ion-button clear small icon-left>
+	  <ion-icon name='person-add'></ion-icon>
+	  Регистрация
+	</button>
+      </ion-col>
+      <ion-col text-right>
+	<button ion-button clear small icon-left>
+	  <ion-icon name='help'></ion-icon>
+	  Забравена парола
+	</button>
+      </ion-col>
+    </ion-row>
 </ion-content>
