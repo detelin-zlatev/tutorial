@@ -28,7 +28,8 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  purple:     #f906f9
 );
 
 
@@ -63,6 +64,7 @@ $colors: (
 @import "ionic.theme.default";
 
 @import "../pages/clients/saloons/saloons";
+@import "../pages/home/home";
 
 
 
