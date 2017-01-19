@@ -8,8 +8,8 @@
   <ion-list>
     <ion-item>
       <ion-label>Категория</ion-label>
-      <ion-select [(ngModel)]="category">
-        <ion-option value="1">Фризьорски салони</ion-option>
+      <ion-select [(ngModel)]="categoryId" *ngFor="let category of categories">
+        <ion-option value="{{category.id}}">{{category.name}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -18,9 +18,8 @@
   <ion-list>
     <ion-item>
       <ion-label>Град</ion-label>
-      <ion-select [(ngModel)]="city">
-        <ion-option value="1">Варна</ion-option>
-        <ion-option value="2">София</ion-option>
+      <ion-select [(ngModel)]="cityId" *ngFor="let city of cities">
+        <ion-option value="{{city.id}}">{{city.name}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
