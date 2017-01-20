@@ -3,11 +3,12 @@
   <div padding>
     <button ion-button color="purple" block (click)="goToPublished()">Обратно в списъка</button>
   </div>
-
+  
+<form [formGroup]="item" (ngSubmit)="add()">
   <ion-list>
     <ion-item>
       <ion-label stacked>Категория</ion-label>
-      <ion-select [(ngModel)]="category">
+      <ion-select formControlName="category">
         <ion-option value="1">Фризьорски салони</ion-option>
       </ion-select>
     </ion-item>
@@ -15,18 +16,18 @@
 
   <ion-item>
     <ion-label stacked>Име</ion-label>
-    <ion-input type="text" value=""></ion-input>
+    <ion-input type="text" formControlName="name"></ion-input>
   </ion-item>
 
   <ion-item>
    <ion-label stacked>Описание</ion-label>
-   <ion-textarea rows="6" [(ngModel)]="msg"></ion-textarea>
+   <ion-textarea rows="6" formControlName="description"></ion-textarea>
  </ion-item>
 
   <ion-list>
     <ion-item>
       <ion-label stacked>Град</ion-label>
-      <ion-select [(ngModel)]="city">
+      <ion-select formControlName="city">
         <ion-option value="1">Варна</ion-option>
       </ion-select>
     </ion-item>
@@ -34,30 +35,32 @@
 
   <ion-item>
    <ion-label stacked>Адрес</ion-label>
-   <ion-textarea rows="2" [(ngModel)]="address"></ion-textarea>
+   <ion-textarea rows="2" formControlName="address"></ion-textarea>
  </ion-item>
 
   <ion-item>
     <ion-label stacked>Email</ion-label>
-    <ion-input type="text" value=""></ion-input>
+    <ion-input type="text" formControlName="email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label stacked>Телефон 1</ion-label>
-    <ion-input type="text" value=""></ion-input>
+    <ion-input type="text" formControlName="phone1"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label stacked>Телефон 2</ion-label>
-    <ion-input type="text" value=""></ion-input>
+    <ion-input type="text" formControlName="phone2"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label stacked>Телефон 3</ion-label>
-    <ion-input type="text" value=""></ion-input>
+    <ion-input type="text" formControlName="phone3"></ion-input>
   </ion-item>
 
   <div padding>
-    <button ion-button color="purple" block (click)="goToPublished()">Запази</button>
+    <button ion-button color="purple" block type="submit">Запази</button>
   </div>
+
+</form>
 </ion-content>
