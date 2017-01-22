@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="purple">
+    <ion-title>
+      Забравена парола
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  
+<form [formGroup]="userData" (ngSubmit)="add()">
+  <ion-item>
+    <ion-label stacked>Email</ion-label>
+    <ion-input type="text" formControlName="email" [class.invalid]="!userData.controls.email.valid  && (userData.controls.email.dirty || submitAttempt)"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="!userData.controls.email.valid  && (userData.controls.email.dirty || submitAttempt)">
+    <div class="invalid-message">Въведете валиден email</div>
+  </ion-item>
+
+  <div padding>
+    <button ion-button color="purple" block type="submit">Изпращане</button>
+  </div>
+
+</form>
+</ion-content>
+

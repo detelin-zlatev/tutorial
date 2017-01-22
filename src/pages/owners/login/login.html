@@ -7,32 +7,41 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
+    <form [formGroup]="userData" (ngSubmit)="login()">
 
-      <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text"></ion-input>
+      <ion-item *ngIf="!loginValid  && submitAttempt">
+        <div class="invalid-message">Невалиден email/парола</div>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" formControlName="email" [class.invalid]="!userData.controls.email.valid  && (userData.controls.email.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!userData.controls.email.valid  && (userData.controls.email.dirty || submitAttempt)">
+        <div class="invalid-message">Въведете потребителско име</div>
       </ion-item>
 
-    </ion-list>
+      <ion-item>
+        <ion-label floating>Парола</ion-label>
+        <ion-input type="password" formControlName="password" [class.invalid]="!userData.controls.password.valid  && (userData.controls.password.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!userData.controls.password.valid  && (userData.controls.password.dirty || submitAttempt)">
+        <div class="invalid-message">Въведете парола</div>
+      </ion-item>
 
-  <div padding>
-    <button ion-button color="purple" block (click)="goToPublished()">Влез</button>
-  </div>
+      <div padding>
+          <button ion-button color="purple" block type="submit">Влез</button>
+      </div>
+      </form>
   <ion-row no-padding>
       <ion-col text-right>
-	<button ion-button clear small icon-left color="purple">
+	<button ion-button clear small icon-left color="purple" (click)="goToRegister()">
 	  <ion-icon name='person-add'></ion-icon>
 	  Регистрация
 	</button>
       </ion-col>
       <ion-col text-right>
-	<button ion-button clear small icon-left color="purple">
+	<button ion-button clear small icon-left color="purple" (click)="goToForgotten()">
 	  <ion-icon name='help'></ion-icon>
 	  Забравена парола
 	</button>

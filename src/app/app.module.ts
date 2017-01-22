@@ -1,9 +1,12 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/owners/login/login';
 import { RegisterPage } from '../pages/owners/register/register';
+import { ForgottenPage } from '../pages/owners/forgotten/forgotten';
 import { DetailsPage } from '../pages/owners/details/details';
 import { PublishPage } from '../pages/owners/publish/publish';
 import { PublishedPage } from '../pages/owners/published/published';
@@ -21,6 +24,7 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     LoginPage,
     SearchPage,
     RegisterPage,
+    ForgottenPage,
     PublishPage,
     PublishedPage,
     PortfolioPage,
@@ -40,6 +44,7 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     LoginPage,
     SearchPage,
     RegisterPage,
+    ForgottenPage,
     PublishPage,
     PublishedPage,
     PortfolioPage,
@@ -49,6 +54,6 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     SaloonPage,
     DetailsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage]
 })
 export class AppModule {}

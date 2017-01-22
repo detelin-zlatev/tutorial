@@ -16,14 +16,14 @@ export class DetailsPage {
   constructor(public navCtrl: NavController, private formBuilder: FormBuilder) {
     this.item = this.formBuilder.group({
       category: ['', Validators.required],
-	name: ['', Validators.required],
-	description: [''],
-	city: ['', Validators.required],
-	address: ['', Validators.required],
-	email: ['', Validators.required],
-	phone1: ['', Validators.required],
-	phone2: [''],
-	phone3: ['']
+      name: ['', Validators.required],
+      description: [''],
+      city: ['', Validators.required],
+      address: ['', Validators.required],
+      email: ['', Validators.required],
+      phone1: ['', Validators.required],
+      phone2: [''],
+      phone3: ['']
     });
   }
 
