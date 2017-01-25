@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import {Validators, FormBuilder } from '@angular/forms';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { NavController } from 'ionic-angular';
 
 import {PublishedPage} from '../published/published'
+
+import {SaloonService} from '../../../providers/saloon-service';
 
 @Component({
   selector: 'page-details',
@@ -12,15 +14,19 @@ import {PublishedPage} from '../published/published'
 export class DetailsPage {
 
   item: any;
+  itemId: number;
+  submitAttempt: boolean;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService) {
+    let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
+
     this.item = this.formBuilder.group({
       category: ['', Validators.required],
       name: ['', Validators.required],
       description: [''],
       city: ['', Validators.required],
       address: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern(emailRegex)]],
       phone1: ['', Validators.required],
       phone2: [''],
       phone3: ['']
@@ -28,12 +34,38 @@ export class DetailsPage {
   }
 
   goToPublished() {
-    //push another page onto the history stack
-    //causing the nav controller to animate the new page in
     this.navCtrl.push(PublishedPage);
   }
 
-  add() {
-    console.log(this.item);
+  save() {
+    this.submitAttempt = true;
+    
+    this.saloonService.addEditDetails(
+		this.itemId,
+		this.item.controls['category'].value, 
+		this.item.controls['name'].value,
+		this.item.controls['description'].value,
+		this.item.controls['city'].value,
+		this.item.controls['address'].value,
+		this.item.controls['email'].value,
+		this.item.controls['phone1'].value,
+		this.item.controls['phone2'].value,
+		this.item.controls['phone3'].value,
+                'token_val'
+	).
+      then(data => {
+        console.log(data);
+        this.item = data;
+      });
+  }
+
+  matchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
+    return (group: FormGroup) => {
+      let passwordInput = group.controls[passwordKey];
+      let passwordConfirmationInput = group.controls[passwordConfirmationKey];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({notEquivalent: true})
+      }
+    }
   }
 }
