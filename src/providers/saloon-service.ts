@@ -15,8 +15,8 @@ export class SaloonService {
 
 
   addEditDetails(
-	id: number,
-	categoryId: number,
+	      id: number,
+	      categoryId: number,
       	name: string,
       	description: string,
       	cityId: number,
@@ -25,7 +25,7 @@ export class SaloonService {
       	phone1: string,
       	phone2: string,
       	phone3: string,
-	token: string) {
+	      token: string) {
     
     if (this.currentDetails) {
         return Promise.resolve(this.currentDetails);
@@ -36,24 +36,25 @@ export class SaloonService {
         let options = new RequestOptions({ headers: headers });
 
         let body = JSON.stringify({
-	    category_id: categoryId,
-	    name: name,
-	    description: description,
-	    city_id: cityId,
-	    address: address,
-	    email: email,
-	    phone_1: phone1,
-	    phone_2: phone2,
-	    phone_3: phone3,
+            id: id ? id : 0,
+            category_id: categoryId,
+            name: name,
+            description: description,
+            city_id: cityId,
+            address: address,
+            email: email,
+            phone_1: phone1,
+            phone_2: phone2,
+            phone_3: phone3,
             token: token
         });
 
         console.log(body);
 
-        this.http.post(AppSettings.API_ENDPOINT + 'saloons/add', body, options)
+        this.http.post(AppSettings.API_ENDPOINT + 'saloons/' + (id ? 'edit' : 'add') + 'Remote' , body, options)
             .map(res => res.json())
             .subscribe(data => {
-              this.currentDetails = data;
+              this.currentDetails = data.saloon;
               resolve(this.currentDetails);
             });
     });

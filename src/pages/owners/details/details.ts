@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 
 import { NavController } from 'ionic-angular';
 
@@ -9,7 +10,8 @@ import {SaloonService} from '../../../providers/saloon-service';
 
 @Component({
   selector: 'page-details',
-  templateUrl: 'details.html'
+  templateUrl: 'details.html',
+  providers: [SaloonService]
 })
 export class DetailsPage {
 
@@ -17,7 +19,7 @@ export class DetailsPage {
   itemId: number;
   submitAttempt: boolean;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService) {
+  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService) {
     let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
 
     this.item = this.formBuilder.group({
@@ -40,23 +42,28 @@ export class DetailsPage {
   save() {
     this.submitAttempt = true;
     
-    this.saloonService.addEditDetails(
-		this.itemId,
-		this.item.controls['category'].value, 
-		this.item.controls['name'].value,
-		this.item.controls['description'].value,
-		this.item.controls['city'].value,
-		this.item.controls['address'].value,
-		this.item.controls['email'].value,
-		this.item.controls['phone1'].value,
-		this.item.controls['phone2'].value,
-		this.item.controls['phone3'].value,
-                'token_val'
-	).
-      then(data => {
-        console.log(data);
-        this.item = data;
-      });
+    this.storage.get('token').then((token) => {
+        this.saloonService.addEditDetails(
+          this.itemId,
+          this.item.controls['category'].value, 
+          this.item.controls['name'].value,
+          this.item.controls['description'].value,
+          this.item.controls['city'].value,
+          this.item.controls['address'].value,
+          this.item.controls['email'].value,
+          this.item.controls['phone1'].value,
+          this.item.controls['phone2'].value,
+          this.item.controls['phone3'].value,
+          token
+	      ).
+        then(data => {
+          if (data != null && data.id > 0) {
+              this.storage.set('itemId', data.id).then(() => {
+                this.navCtrl.parent.select(1);
+              });
+          }
+        });
+    });
   }
 
   matchingPasswords(passwordKey: string, passwordConfirmationKey: string) {

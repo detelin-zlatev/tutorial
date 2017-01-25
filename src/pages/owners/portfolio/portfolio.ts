@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-portfolio',
@@ -8,8 +9,13 @@ import { NavController } from 'ionic-angular';
 })
 export class PortfolioPage {
 
-  constructor(public navCtrl: NavController) {
-    
+  itemId: number;
+
+  constructor(public storage: Storage, public navCtrl: NavController, navParams: NavParams) {
+      this.storage.get('itemId').then((id) => {
+        this.itemId = id;
+        console.log(this.itemId);
+    });
   }
 
 }
