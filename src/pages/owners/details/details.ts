@@ -33,6 +33,33 @@ export class DetailsPage {
       phone2: [''],
       phone3: ['']
     });
+
+    this.storage.get('itemId').then((id) => {
+      if (id && id > 0) {
+        this.itemId = id;
+        this.storage.get('token').then((token) => {
+            this.saloonService.singleSaloon(token, this.itemId).
+            then(data => {
+              console.log(data);
+              if (data != null && data.id > 0) {
+                this.item.setValue({
+                  category: data.category_id,
+                  name: data.name,
+                  description: data.description,
+                  city: data.city_id,
+                  address: data.address,
+                  email: data.email,
+                  phone1: data.phone_1,
+                  phone2: data.phone_2,
+                  phone3: data.phone_3
+                });
+
+                
+              }
+            });
+        });
+      }
+    });
   }
 
   goToPublished() {

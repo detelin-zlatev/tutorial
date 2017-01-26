@@ -14,6 +14,7 @@ import {SaloonService} from '../../../providers/saloon-service';
 export class PublishedPage {
 
   saloons: any;
+  submitAttempt: boolean;
 
   constructor(public storage: Storage, public navCtrl: NavController, public saloonService: SaloonService) {
     this.submitAttempt = true;
@@ -27,9 +28,13 @@ export class PublishedPage {
   }
 
   goToPublish() {
-    //push another page onto the history stack
-    //causing the nav controller to animate the new page in
     this.navCtrl.push(PublishPage);
+  }
+
+  goToItem(itemId: number) {
+    this.storage.set('itemId', itemId).then(() => {
+      this.navCtrl.push(PublishPage);
+    });
   }
 
 }

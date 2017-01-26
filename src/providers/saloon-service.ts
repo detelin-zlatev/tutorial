@@ -9,6 +9,7 @@ export class SaloonService {
 
   public currentDetails: any;
   public saloons: any;
+  public saloon: any;
 
   constructor(public http: Http) {
     console.log('Hello LoginService Provider');
@@ -80,8 +81,35 @@ export class SaloonService {
         this.http.post(AppSettings.API_ENDPOINT + 'saloons/' + 'list' , body, options)
             .map(res => res.json())
             .subscribe(data => {
-              this.saloons = data;
+              this.saloons = data.saloons;
               resolve(this.saloons);
+            });
+    });
+  }
+
+
+  singleSaloon(token: string, itemId: number) {
+    
+    if (this.saloon) {
+        return Promise.resolve(this.saloon);
+    }
+
+    return new Promise(resolve => {
+        let headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = JSON.stringify({
+            token: token,
+            id: itemId
+        });
+
+        console.log(body);
+
+        this.http.post(AppSettings.API_ENDPOINT + 'saloons/' + 'single' , body, options)
+            .map(res => res.json())
+            .subscribe(data => {
+              this.saloon = data.saloon;
+              resolve(this.saloon);
             });
     });
   }
