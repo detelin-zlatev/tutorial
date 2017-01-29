@@ -3,73 +3,21 @@
     <button ion-button  color="purple" block (click)="goToSearch()" icon-left><ion-icon name='search'></ion-icon> Ново Търсене</button>
   </div>
 
-   <ion-card (click)="goToSaloon()">
-	  <img src="https://ionicframework.com/dist/preview-app/www/assets/img/badu-live.png"/>
+   <ion-card (click)="goToSaloon(saloon)" *ngFor="let saloon of saloons">
+	  <img src="{{imagesPath}}{{saloon.portfolios[0] ? saloon.portfolios[0].filepath : 'img/no_image.png'}}"/>
 	  <ion-card-content>
 	    <ion-card-title>
-	      Салон 1
+	      {{saloon.name}}
 	    </ion-card-title>
 	    <p>
-	      гр. Варна, бул. Варненчик 34
+	      {{saloon.city.name}}, {{saloon.address}}
 	    </p>
 	  </ion-card-content>
 
 	  <ion-row no-padding>
               <ion-col text-right>
 		<button ion-button clear small icon-left color="purple">
-		  Фризьорски салони
-		</button>
-	      </ion-col>
-	      <ion-col text-right>
-		<button ion-button clear small icon-left color="purple">
-		  <ion-icon name='eye'></ion-icon>
-		  Виж
-		</button>
-	      </ion-col>
-	    </ion-row>
-   </ion-card>
-
-   <ion-card (click)="goToSaloon()">
-	  <img src="https://ionicframework.com/dist/preview-app/www/assets/img/badu-live.png"/>
-	  <ion-card-content>
-	    <ion-card-title>
-	      Салон 1
-	    </ion-card-title>
-	    <p>
-	      гр. Варна, бул. Варненчик 34
-	    </p>
-	  </ion-card-content>
-
-	  <ion-row no-padding>
-              <ion-col text-right>
-		<button ion-button clear small icon-left color="purple">
-		  Фризьорски салони
-		</button>
-	      </ion-col>
-	      <ion-col text-right>
-		<button ion-button clear small icon-left color="purple">
-		  <ion-icon name='eye'></ion-icon>
-		  Виж
-		</button>
-	      </ion-col>
-	    </ion-row>
-   </ion-card>
-
-<ion-card (click)="goToSaloon()">
-	  <img src="https://ionicframework.com/dist/preview-app/www/assets/img/badu-live.png"/>
-	  <ion-card-content>
-	    <ion-card-title>
-	      Салон 1
-	    </ion-card-title>
-	    <p>
-	      гр. Варна, бул. Варненчик 34
-	    </p>
-	  </ion-card-content>
-
-	  <ion-row no-padding>
-              <ion-col text-right>
-		<button ion-button clear small icon-left color="purple">
-		  Фризьорски салони
+		  {{saloon.category.name}}
 		</button>
 	      </ion-col>
 	      <ion-col text-right>

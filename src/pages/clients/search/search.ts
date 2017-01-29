@@ -17,14 +17,20 @@ export class SearchPage {
 
   public cities: any;
 
+  public cityId: number;
+  public categoryId: number;
+  public promo: boolean;
+
   constructor(public navCtrl: NavController, public metadataService: MetadataService) {
       this.loadMetadata();
   }
 
   goToSaloons() {
-    //push another page onto the history stack
-    //causing the nav controller to animate the new page in
-    this.navCtrl.push(SaloonsPage);
+    this.navCtrl.push(SaloonsPage, {
+       cityId: this.cityId,
+       categoryId: this.categoryId,
+       promo: this.promo
+     });
   }
 
   loadMetadata() {

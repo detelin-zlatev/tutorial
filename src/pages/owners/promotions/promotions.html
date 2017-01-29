@@ -1,25 +1,16 @@
 <ion-content>
   <div padding>
-    <button ion-button full color="purple">Добави промоция</button>
+    <button ion-button full color="purple" (click)="add()">Добави промоция</button>
   </div>
 
-    <ion-list>
-	<ion-item>
-	    <h2>Промоция 1</h2>
-            <p>Описание на промоция</p>
-      	    <h6>Стара цена: 30лв.</h6>
-	    <h6>Нова цена: 25лв.</h6>
-	    <button ion-button clear item-right (click)="add()" color="purple">Промени</button>
-	    <button ion-button clear item-right color="purple">Изтрий</button>
-	</ion-item>
-
-        <ion-item>
-	    <h2>Промоция 2</h2>
-            <p>Описание на промоция</p>
-      	    <h6>Стара цена: 30лв.</h6>
-	    <h6>Нова цена: 25лв.</h6>
-	    <button ion-button clear item-right (click)="add()" color="purple">Промени</button>
-	    <button ion-button clear item-right color="purple">Изтрий</button>
-	</ion-item>
-   </ion-list>
+  <ion-list>
+		<ion-item *ngFor="let promotion of promotions">
+				<h2>{{promotion.name}}</h2>
+				<p>{{promotion.description}}</p>
+				<h6>Стара цена: {{promotion.old_price}}</h6>
+				<h6>Нова цена: {{promotion.new_price}}</h6>
+				<button ion-button clear item-right (click)="goToItem(promotion.id)" color="purple">Промени</button>
+				<button ion-button clear item-right (click)="delete(promotion.id)" color="purple">Изтрий</button>
+		</ion-item>
+  </ion-list>
 </ion-content>

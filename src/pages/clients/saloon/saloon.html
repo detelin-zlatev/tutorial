@@ -6,58 +6,44 @@
 
 <ion-content class="grey">
 	<ion-card>
-	  <img src="https://ionicframework.com/dist/preview-app/www/assets/img/badu-live.png"/>
+	  <img src="{{imagesPath}}{{saloon.portfolios[0] ? saloon.portfolios[0].filepath : 'img/no_image.png'}}"/>
 	  <ion-card-content>
 	    <ion-card-title>
-	      Салон 1
+	      {{saloon.name}}
 	    </ion-card-title>
 	    <p>
-	      гр. Варна, бул. Варненчик 34
+	       {{saloon.city.name}}, {{saloon.address}}
 	    </p>
             <p>
-	      тел: 0888888888
+	      тел:  {{saloon.phone_1}}
 	    </p>
             <p style="font-size: 0.9em; color: #555555; font-style: italic;">
-	      Описание описание описание описание описание описание
+	      {{saloon.description}}
 	    </p>
 	  </ion-card-content>
       </ion-card>
 
-      <ion-card>
+  <ion-card>
 	  <ion-card-header>
 	    <ion-icon name='photos' icon-left></ion-icon>
 	  </ion-card-header>
 
-	<ion-card-content>
-	    <img src="https://ionicframework.com/dist/preview-app/www/assets/img/badu-live.png"/>
-<img src="https://ionicframework.com/dist/preview-app/www/assets/img/badu-live.png" style="margin-top: 10px;"/>
- </ion-card-content>
-      </ion-card>
+		<ion-card-content>
+	    <img src="{{imagesPath}}{{portfolio.filepath}}" *ngFor="let portfolio of saloon.portfolios" style="margin-top: 10px;"/>
+ 		</ion-card-content>
+  </ion-card>
       
 
-	<ion-card>
+	<ion-card *ngFor="let promotion of saloon.promotions">
 	  <ion-card-header color="purple">
-	    Промоция 1
+	    {{promotion.name}}
 	  </ion-card-header>
 
-	<ion-card-content>
+		<ion-card-content>
 	    <h2></h2>
-            <p style="font-size: 0.9em; color: #555555; font-style: italic;">Описание на промоция</p>
-      	    <h6>Стара цена: 30лв.</h6>
-	    <h6>Нова цена: 25лв.</h6>
-	</ion-card-content>
-      </ion-card>
-
-      <ion-card>
-	  <ion-card-header color="purple">
-	    Промоция 2
-	  </ion-card-header>
-
-	<ion-card-content>
-	    <h2></h2>
-            <p style="font-size: 0.9em; color: #555555; font-style: italic;">Описание на промоция</p>
-      	    <h6>Стара цена: 40лв.</h6>
-	    <h6>Нова цена: 30лв.</h6>
-	</ion-card-content>
-      </ion-card>
+      <p style="font-size: 0.9em; color: #555555; font-style: italic;">{{promotion.description}}</p>
+      <h6>Стара цена: {{promotion.old_price}}.</h6>
+	    <h6>Нова цена: {{promotion.new_price}}.</h6>
+		</ion-card-content>
+  </ion-card>
 </ion-content>

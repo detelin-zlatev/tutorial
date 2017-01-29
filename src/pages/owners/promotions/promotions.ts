@@ -1,24 +1,67 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 import { NavController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 
 import {EditPage} from '../edit/edit'
 
+import {SaloonService} from '../../../providers/saloon-service';
+
 @Component({
   selector: 'page-promotions',
-  templateUrl: 'promotions.html'
+  templateUrl: 'promotions.html',
+  providers: [SaloonService]
 })
 export class PromotionsPage {
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-    
+  promotions: any;
+  itemId: number;
+
+  constructor(public storage: Storage, public navCtrl: NavController, public modalCtrl: ModalController, public saloonService: SaloonService) {
+    this.loadListData();
+  }
+
+  add() {
+    let modal = this.modalCtrl.create(EditPage, {
+       "parentPage": this
+     });
+    modal.present();
+  }
+
+  goToItem(itemId: number) {
+    let modal = this.modalCtrl.create(EditPage, {
+       item: itemId, "parentPage": this
+     });
+    modal.present();
+  }
+
+  loadListData() {
+    this.saloonService.promotions = null;
+    this.storage.get('itemId').then((id) => {
+      if (id && id > 0) {
+        this.itemId = id;
+        this.storage.get('token').then((token) => {
+            this.saloonService.listPromotions(token, this.itemId).
+            then(data => {
+              this.promotions = data;
+            });
+        });
+      }
+    });
   }
 
 
-  add() {
-    let modal = this.modalCtrl.create(EditPage);
-    modal.present();
+  delete(promotionId: number) {
+    this.storage.get('token').then((token) => {
+        this.saloonService.deletePromotion(
+          token,
+          promotionId
+        ).
+        then(data => {
+          this.loadListData();
+        });
+    });
   }
 
 }

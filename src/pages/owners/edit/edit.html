@@ -1,25 +1,27 @@
 <ion-content>
-    <ion-item>
-        <ion-label stacked>Име</ion-label>
-        <ion-input type="text" value=""></ion-input>
-    </ion-item>
+    <form [formGroup]="item" (ngSubmit)="save()">
+        <ion-item>
+            <ion-label stacked>Име</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
 
-    <ion-item>
-        <ion-label stacked>Описание</ion-label>
-        <ion-textarea rows="6" [(ngModel)]="msg"></ion-textarea>
-    </ion-item>
+        <ion-item>
+            <ion-label stacked>Описание</ion-label>
+            <ion-textarea rows="6" formControlName="description"></ion-textarea>
+        </ion-item>
 
-    <ion-item>
-        <ion-label stacked>Стара цена</ion-label>
-        <ion-input type="text" value=""></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label stacked>Стара цена</ion-label>
+            <ion-input type="number" numbers-only precision="2" formControlName="oldPrice"></ion-input>
+        </ion-item>
 
-    <ion-item>
-        <ion-label stacked>Нова цена</ion-label>
-        <ion-input type="text" value=""></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label stacked>Нова цена</ion-label>
+            <ion-input type="number" numbers-only precision="2" formControlName="newPrice"></ion-input>
+        </ion-item>
 
-  <div padding>
-    <button ion-button color="purple" block (click)="close()">Запази</button>
-  </div>
+        <div padding>
+            <button ion-button color="purple" block type="submit">Запази</button>
+        </div>
+    </form>
 </ion-content>

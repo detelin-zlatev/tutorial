@@ -8,8 +8,13 @@ import {AppSettings} from '../appSettings';
 export class SaloonService {
 
   public currentDetails: any;
+  public currentPromoDetails: any;
   public saloons: any;
   public saloon: any;
+  public promotions: any;
+  public promotion: any;
+  public deleteOk: boolean;
+  public searches: any;
 
   constructor(public http: Http) {
     console.log('Hello LoginService Provider');
@@ -17,8 +22,8 @@ export class SaloonService {
 
 
   addEditDetails(
-	      id: number,
-	      categoryId: number,
+	    id: number,
+	    categoryId: number,
       	name: string,
       	description: string,
       	cityId: number,
@@ -78,10 +83,10 @@ export class SaloonService {
 
         console.log(body);
 
-        this.http.post(AppSettings.API_ENDPOINT + 'saloons/' + 'list' , body, options)
+        this.http.post(AppSettings.API_ENDPOINT + 'saloons/list' , body, options)
             .map(res => res.json())
             .subscribe(data => {
-              this.saloons = data.saloons;
+              this.saloons = data;
               resolve(this.saloons);
             });
     });
@@ -105,11 +110,161 @@ export class SaloonService {
 
         console.log(body);
 
-        this.http.post(AppSettings.API_ENDPOINT + 'saloons/' + 'single' , body, options)
+        this.http.post(AppSettings.API_ENDPOINT + 'saloons/single' , body, options)
             .map(res => res.json())
             .subscribe(data => {
               this.saloon = data.saloon;
               resolve(this.saloon);
+            });
+    });
+  }
+
+
+  listPromotions(token: string, itemId: number) {
+    
+    if (this.promotions) {
+        return Promise.resolve(this.promotions);
+    }
+
+    return new Promise(resolve => {
+        let headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = JSON.stringify({
+            token: token,
+            id: itemId
+        });
+
+        console.log(body);
+
+        this.http.post(AppSettings.API_ENDPOINT + 'promos/list' , body, options)
+            .map(res => res.json())
+            .subscribe(data => {
+              this.promotions = data.promos;
+              resolve(this.promotions);
+            });
+    });
+  }
+
+
+  addEditPromoDetails(
+	    id: number,
+	    name: string,
+      	description: string,
+      	oldPrice: string,
+      	newPrice: string,
+        saloonId: number,
+	    token: string) {
+    
+    if (this.currentPromoDetails) {
+        return Promise.resolve(this.currentPromoDetails);
+    }
+
+    return new Promise(resolve => {
+        let headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = JSON.stringify({
+            id: id ? id : 0,
+            name: name,
+            description: description,
+            old_price: oldPrice,
+            new_price: newPrice,
+            saloon_id: saloonId,
+            token: token
+        });
+
+        console.log(body);
+
+        this.http.post(AppSettings.API_ENDPOINT + 'promos/' + (id ? 'edit' : 'add') + 'Remote' , body, options)
+            .map(res => res.json())
+            .subscribe(data => {
+              this.currentPromoDetails = data.promo;
+              resolve(this.currentPromoDetails);
+            });
+    });
+  }
+
+  singlePromotion(token: string, itemId: number) {
+    
+    if (this.promotion) {
+        return Promise.resolve(this.promotion);
+    }
+
+    return new Promise(resolve => {
+        let headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = JSON.stringify({
+            token: token,
+            id: itemId
+        });
+
+        console.log(body);
+
+        this.http.post(AppSettings.API_ENDPOINT + 'promos/single' , body, options)
+            .map(res => res.json())
+            .subscribe(data => {
+              this.promotion = data.promo;
+              resolve(this.promotion);
+            });
+    });
+  }
+
+
+  deletePromotion(token: string, promotionId: number) {
+    
+    if (this.deleteOk) {
+        return Promise.resolve(this.deleteOk);
+    }
+
+    return new Promise(resolve => {
+        let headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = JSON.stringify({
+            token: token,
+            id: promotionId
+        });
+
+        console.log(body);
+
+        this.http.post(AppSettings.API_ENDPOINT + 'promos/deleteRemote' , body, options)
+            .map(res => res.json())
+            .subscribe(data => {
+              this.deleteOk = true;
+              resolve(this.deleteOk);
+            });
+    });
+  }
+
+
+
+
+
+  searchSaloons(city_id: number, category_id: number, promo: boolean) {
+    
+    if (this.searches) {
+        return Promise.resolve(this.searches);
+    }
+
+    return new Promise(resolve => {
+        let headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = JSON.stringify({
+            city_id: city_id,
+            category_id: category_id,
+            promo: promo
+        });
+
+        console.log(body);
+
+        this.http.post(AppSettings.API_ENDPOINT + 'rest/search' , body, options)
+            .map(res => res.json())
+            .subscribe(data => {
+              this.searches = data;
+              resolve(this.searches);
             });
     });
   }
