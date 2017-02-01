@@ -14,7 +14,9 @@ export class SaloonService {
   public promotions: any;
   public promotion: any;
   public deleteOk: boolean;
+  public deletePortfolioOk: boolean;
   public searches: any;
+  public portfolios: any;
 
   constructor(public http: Http) {
     console.log('Hello LoginService Provider');
@@ -147,6 +149,34 @@ export class SaloonService {
   }
 
 
+  listPortfolios(token: string, itemId: number) {
+    
+    if (this.portfolios) {
+        return Promise.resolve(this.portfolios);
+    }
+
+    return new Promise(resolve => {
+        let headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = JSON.stringify({
+            token: token,
+            id: itemId
+        });
+
+        console.log(body);
+
+        this.http.post(AppSettings.API_ENDPOINT + 'portfolios/list' , body, options)
+            .map(res => res.json())
+            .subscribe(data => {
+              console.log(data);  
+              this.portfolios = data.portfolios;
+              resolve(this.portfolios);
+            });
+    });
+  }
+
+
   addEditPromoDetails(
 	    id: number,
 	    name: string,
@@ -239,7 +269,31 @@ export class SaloonService {
   }
 
 
+  deletePortfolio(token: string, portfolioId: number) {
+    
+    if (this.deletePortfolioOk) {
+        return Promise.resolve(this.deletePortfolioOk);
+    }
 
+    return new Promise(resolve => {
+        let headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = JSON.stringify({
+            token: token,
+            id: portfolioId
+        }); 
+
+        console.log(body);
+
+        this.http.post(AppSettings.API_ENDPOINT + 'portfolios/deleteRemote' , body, options)
+            .map(res => res.json())
+            .subscribe(data => {
+              this.deletePortfolioOk = true;
+              resolve(this.deletePortfolioOk);
+            });
+    });
+  }
 
 
   searchSaloons(city_id: number, category_id: number, promo: boolean) {

@@ -1,28 +1,14 @@
 <ion-content>
   <div padding>
-    <button ion-button full color="purple">Добави снимка</button>
+		<button ion-button full color="purple" (click)="add()">Добави снимка</button>
   </div>
 	<ion-list>
-		<ion-item text-wrap>
-		    <img item-left src="http://ionicframework.com/img/docs/siamese-dream.jpg">
-		    <p>Кратко описание на снимката</p>
-		    <button ion-button clear item-right color="purple">Изтрий</button>
+		<ion-item text-wrap *ngFor="let portfolio of portfolios">
+		    <ion-thumbnail item-left>
+						<img src="{{imagesPath}}{{portfolio.filepath}}">
+				</ion-thumbnail>
+		    <p>{{portfolio.description}}</p>
+		    <button ion-button clear item-right color="purple" (click)="delete(portfolio.id)">Изтрий</button>
 		</ion-item>
-
-		<ion-item>
-		    <ion-thumbnail>
-		      <img src="http://ionicframework.com/img/docs/siamese-dream.jpg">
-		    </ion-thumbnail>
-		    <p>Кратко описание</p>
-		    <button ion-button clear item-right color="purple">Изтрий</button>
-		</ion-item>
-	
-		<ion-item>
-		    <ion-thumbnail>
-		      <img src="http://ionicframework.com/img/docs/siamese-dream.jpg">
-		    </ion-thumbnail>
-		    <p>Кратко описание</p>
-		    <button ion-button clear item-right color="purple">Изтрий</button>
-		</ion-item>
-	</ion-list>
+   </ion-list>
 </ion-content>

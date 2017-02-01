@@ -1,0 +1,13 @@
+<ion-content>
+  <button ion-button full color="purple" (click)="openCamera()">                
+        Open camera
+	</button>
+	<br>
+	<button ion-button full color="purple" (click)="openAlbums()">                
+			Open albums
+	</button>
+	<br>
+	<button ion-button full color="purple" [hidden]="images.length == 0" (click)="startUploading()">                
+			Start uploading
+	</button>
+</ion-content>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import {Validators, FormBuilder } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
 import { NavController } from 'ionic-angular';
@@ -7,19 +7,23 @@ import { NavController } from 'ionic-angular';
 import {PublishedPage} from '../published/published'
 
 import {SaloonService} from '../../../providers/saloon-service';
+import {MetadataService} from '../../../providers/metadata-service';
 
 @Component({
   selector: 'page-details',
   templateUrl: 'details.html',
-  providers: [SaloonService]
+  providers: [SaloonService, MetadataService]
 })
 export class DetailsPage {
 
   item: any;
   itemId: number;
   submitAttempt: boolean;
+  public categories: any;
 
-  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService) {
+  public cities: any;
+
+  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService, public metadataService: MetadataService) {
     let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
 
     this.item = this.formBuilder.group({
@@ -59,6 +63,7 @@ export class DetailsPage {
             });
         });
       }
+      this.loadMetadata();
     });
   }
 
@@ -89,7 +94,16 @@ export class DetailsPage {
                 this.navCtrl.parent.select(1);
               });
           }
+          this.saloonService.currentDetails = null;
         });
     });
+  }
+
+  loadMetadata() {
+      this.metadataService.load()
+      .then(data => {
+        this.categories = data.categories;
+        this.cities = data.cities;    
+      });
   }
 }

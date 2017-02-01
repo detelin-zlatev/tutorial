@@ -9,7 +9,7 @@
     <ion-item>
       <ion-label stacked>Категория</ion-label>
       <ion-select formControlName="category">
-        <ion-option value="1">Фризьорски салони</ion-option>
+        <ion-option value="{{category.id}}" *ngFor="let category of categories">{{category.name}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -28,7 +28,7 @@
     <ion-item>
       <ion-label stacked>Град</ion-label>
       <ion-select formControlName="city">
-        <ion-option value="1">Варна</ion-option>
+        <ion-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>

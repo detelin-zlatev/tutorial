@@ -39,8 +39,7 @@ export class RegisterPage {
         console.log(data);
         if (data.user != null) {
           console.log(data.user.token);
-          this.storage.set('token', data.user.token);
-          this.goToPublished();
+          this.storage.set('token', data.user.token).then(() => this.goToPublished());
         } else {
           this.existingEmail = true;
           this.loginService.userData = null;
