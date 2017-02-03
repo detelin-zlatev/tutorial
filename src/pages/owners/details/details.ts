@@ -25,7 +25,7 @@ export class DetailsPage {
 
   constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService, public metadataService: MetadataService) {
     let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
-
+    
     this.item = this.formBuilder.group({
       category: ['', Validators.required],
       name: ['', Validators.required],
@@ -68,7 +68,9 @@ export class DetailsPage {
   }
 
   goToPublished() {
-    this.navCtrl.push(PublishedPage);
+    this.navCtrl.parent.parent.popTo(PublishedPage)
+    
+    //this.navCtrl.popTo();
   }
 
   save() {

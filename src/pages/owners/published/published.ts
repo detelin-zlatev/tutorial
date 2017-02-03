@@ -22,9 +22,12 @@ export class PublishedPage {
   constructor(public storage: Storage, public navCtrl: NavController, public saloonService: SaloonService) {
     this.imagesPath = AppSettings.API_ENDPOINT;
     
+    console.log('Reached 0');
     this.storage.get('token').then((token) => {
+        console.log('Reached 1');
         this.saloonService.listSaloons(token).
         then(data => {
+          console.log('Reached 2');
           this.saloons = data.saloons;
           this.saloonImages = data.saloonImages;
         });
