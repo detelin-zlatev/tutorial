@@ -20,7 +20,7 @@ export class PublishedPage {
   imagesPath: string;
 
   constructor(public storage: Storage, public navCtrl: NavController, public saloonService: SaloonService) {
-    this.imagesPath = AppSettings.API_ENDPOINT;
+    this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
     
     console.log('Reached 0');
     this.storage.get('token').then((token) => {

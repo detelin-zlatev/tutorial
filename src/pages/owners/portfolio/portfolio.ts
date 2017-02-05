@@ -20,7 +20,7 @@ export class PortfolioPage {
   imagesPath: string;
 
   constructor(public storage: Storage, public navCtrl: NavController, navParams: NavParams, public saloonService: SaloonService) {
-     this.imagesPath = AppSettings.API_ENDPOINT;
+     this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
       this.storage.get('itemId').then((id) => {
         this.itemId = id;
         console.log(this.itemId);
@@ -54,6 +54,7 @@ export class PortfolioPage {
           portfolioId
         ).
         then(data => {
+          this.saloonService.deletePortfolioOk = false;
           this.loadListData();
         });
     });

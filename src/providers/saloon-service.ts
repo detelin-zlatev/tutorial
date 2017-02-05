@@ -17,6 +17,7 @@ export class SaloonService {
   public deletePortfolioOk: boolean;
   public searches: any;
   public portfolios: any;
+  public portfolio: any;
 
   constructor(public http: Http) {
     console.log('Hello LoginService Provider');
@@ -291,6 +292,33 @@ export class SaloonService {
             .subscribe(data => {
               this.deletePortfolioOk = true;
               resolve(this.deletePortfolioOk);
+            });
+    });
+  }
+
+
+  singlePortfolio(token: string, itemId: number) {
+    
+    if (this.portfolio) {
+        return Promise.resolve(this.portfolio);
+    }
+
+    return new Promise(resolve => {
+        let headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = JSON.stringify({
+            token: token,
+            id: itemId
+        });
+
+        console.log(body);
+
+        this.http.post(AppSettings.API_ENDPOINT + 'promos/single' , body, options)
+            .map(res => res.json())
+            .subscribe(data => {
+              this.promotion = data.promo;
+              resolve(this.promotion);
             });
     });
   }

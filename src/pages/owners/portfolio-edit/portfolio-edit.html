@@ -1,0 +1,12 @@
+<ion-content>
+    <form [formGroup]="item" (ngSubmit)="save()">
+        <ion-item>
+            <ion-label stacked>Описание</ion-label>
+            <ion-textarea rows="6" formControlName="description"></ion-textarea>
+        </ion-item>
+
+        <div padding>
+            <button ion-button color="purple" block type="submit">Запази</button>
+        </div>
+    </form>
+</ion-content>
