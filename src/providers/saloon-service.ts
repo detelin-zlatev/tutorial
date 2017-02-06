@@ -18,6 +18,7 @@ export class SaloonService {
   public searches: any;
   public portfolios: any;
   public portfolio: any;
+  public portfolioEditOk: boolean;
 
   constructor(public http: Http) {
     console.log('Hello LoginService Provider');
@@ -314,11 +315,42 @@ export class SaloonService {
 
         console.log(body);
 
-        this.http.post(AppSettings.API_ENDPOINT + 'promos/single' , body, options)
+        this.http.post(AppSettings.API_ENDPOINT + 'portfolios/single' , body, options)
             .map(res => res.json())
             .subscribe(data => {
               this.promotion = data.promo;
               resolve(this.promotion);
+            });
+    });
+  }
+
+
+  editPortfolioDetails(
+	    id: number,
+	    description: string,
+      	token: string) {
+    
+    if (this.portfolioEditOk) {
+        return Promise.resolve(this.portfolioEditOk);
+    }
+
+    return new Promise(resolve => {
+        let headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = JSON.stringify({
+            id: id ? id : 0,
+            description: description,
+            token: token
+        });
+
+        console.log(body);
+
+        this.http.post(AppSettings.API_ENDPOINT + 'portfolios/editRemote' , body, options)
+            .map(res => res.json())
+            .subscribe(data => {
+              this.portfolioEditOk = true;
+              resolve(this.portfolioEditOk);
             });
     });
   }

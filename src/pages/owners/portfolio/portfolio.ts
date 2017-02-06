@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import {PortfolioAddPage} from '../portfolio-add/portfolio-add'
+import {PortfolioEditPage} from '../portfolio-edit/portfolio-edit'
 
 import {SaloonService} from '../../../providers/saloon-service';
 import {AppSettings} from '../../../appSettings';
@@ -19,7 +20,7 @@ export class PortfolioPage {
   itemId: number;
   imagesPath: string;
 
-  constructor(public storage: Storage, public navCtrl: NavController, navParams: NavParams, public saloonService: SaloonService) {
+  constructor(public storage: Storage, public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public saloonService: SaloonService) {
      this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
       this.storage.get('itemId').then((id) => {
         this.itemId = id;
@@ -58,5 +59,12 @@ export class PortfolioPage {
           this.loadListData();
         });
     });
+  }
+
+  goToItem(itemId: number) {
+    let modal = this.modalCtrl.create(PortfolioEditPage, {
+       item: itemId, "parentPage": this
+     });
+    modal.present();
   }
 }

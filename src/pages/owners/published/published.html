@@ -12,7 +12,7 @@
     <ion-list>
 	<ion-item *ngFor="let saloon of saloons">
 	    <ion-thumbnail item-left>
-	      <img src="{{imagesPath}}{{saloonImages[saloon.id] ? saloonImages[saloon.id] : 'img/no_image.png'}}">
+	      <img src="{{imagesPath}}{{saloonImages[saloon.id] ? saloonImages[saloon.id] : '../../img/no_image.png'}}">
 	    </ion-thumbnail>
 	    <h2>{{saloon.name}}</h2>
             <p>{{saloon.category.name}}</p>

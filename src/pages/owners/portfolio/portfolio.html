@@ -8,6 +8,7 @@
 						<img src="{{imagesPath}}{{portfolio.filepath}}">
 				</ion-thumbnail>
 		    <p>{{portfolio.description}}</p>
+				<button ion-button clear item-right (click)="goToItem(portfolio.id)" color="purple">Промени</button>
 		    <button ion-button clear item-right color="purple" (click)="delete(portfolio.id)">Изтрий</button>
 		</ion-item>
    </ion-list>

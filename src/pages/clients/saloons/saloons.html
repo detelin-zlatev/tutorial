@@ -4,7 +4,7 @@
   </div>
 
    <ion-card (click)="goToSaloon(saloon)" *ngFor="let saloon of saloons">
-	  <img src="{{imagesPath}}{{saloon.portfolios[0] ? saloon.portfolios[0].filepath : 'img/no_image.png'}}"/>
+	  <img src="{{imagesPath}}{{saloon.portfolios[0] ? saloon.portfolios[0].filepath : '../../img/no_image.png'}}"/>
 	  <ion-card-content>
 	    <ion-card-title>
 	      {{saloon.name}}

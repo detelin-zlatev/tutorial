@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Validators, FormBuilder } from '@angular/forms';
+import {FormBuilder } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
 import { NavController, NavParams } from 'ionic-angular';
@@ -11,7 +11,7 @@ import {SaloonService} from '../../../providers/saloon-service';
   templateUrl: 'portfolio-edit.html',
   providers: [SaloonService]
 })
-export class EditPage {
+export class PortfolioEditPage {
 
   item: any;
   submitAttempt: boolean

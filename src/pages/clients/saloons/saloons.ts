@@ -20,7 +20,7 @@ export class SaloonsPage {
   public imagesPath: string;
 
   constructor(public navCtrl: NavController, public saloonService: SaloonService, public navParams: NavParams) {
-      this.imagesPath = AppSettings.API_ENDPOINT;
+      this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
       this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo')).then(data => {
           this.saloons = data.saloons;
       });

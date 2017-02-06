@@ -14,7 +14,7 @@ export class SaloonPage {
   public imagesPath: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-      this.imagesPath = AppSettings.API_ENDPOINT;
+      this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
       this.saloon = this.navParams.get('saloon');
   }
 
