@@ -318,8 +318,8 @@ export class SaloonService {
         this.http.post(AppSettings.API_ENDPOINT + 'portfolios/single' , body, options)
             .map(res => res.json())
             .subscribe(data => {
-              this.promotion = data.promo;
-              resolve(this.promotion);
+              this.portfolio = data.portfolio;
+              resolve(this.portfolio);
             });
     });
   }
@@ -356,7 +356,7 @@ export class SaloonService {
   }
 
 
-  searchSaloons(city_id: number, category_id: number, promo: boolean) {
+  searchSaloons(city_id: number, category_id: number, promo: boolean, page: number, size: number) {
     
     if (this.searches) {
         return Promise.resolve(this.searches);
@@ -369,7 +369,9 @@ export class SaloonService {
         let body = JSON.stringify({
             city_id: city_id,
             category_id: category_id,
-            promo: promo
+            promo: promo,
+            page: page,
+            size: size
         });
 
         console.log(body);

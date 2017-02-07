@@ -26,7 +26,7 @@ export class SaloonsPage {
     loader.present();
 
       this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
-      this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo')).then(data => {
+      this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), 1, 100).then(data => {
           this.saloons = data.saloons;
 	  loader.dismiss();
       });
