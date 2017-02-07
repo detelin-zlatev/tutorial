@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import {LoginPage} from '../owners/login/login'
@@ -16,11 +16,16 @@ import {LoginService} from '../../providers/login-service';
 })
 export class HomePage {
 
-  constructor(public storage: Storage, public navCtrl: NavController, public loginService: LoginService) {
+  constructor(public storage: Storage, public navCtrl: NavController, public loginService: LoginService, public loadingController: LoadingController) {
     
   }
 
   goToLogin() {
+    let loader = this.loadingController.create({
+      content: "Зарежда..."
+    });
+    loader.present();
+
     this.storage.get('token').then((val) => {
        console.log('Token present: ', val);
        if (val) {
@@ -28,14 +33,20 @@ export class HomePage {
           then(data => {
             console.log(data);
             if (data == true) {
-              this.navCtrl.push(PublishedPage);
+              this.navCtrl.push(PublishedPage, {
+		       loader: loader
+		     });
             } else {
-              this.navCtrl.push(LoginPage);
+              this.navCtrl.push(LoginPage, {
+		       loader: loader
+		     });
             }
             this.loginService.tokenValid = null;
           });
        } else {
-         this.navCtrl.push(LoginPage);
+         this.navCtrl.push(LoginPage, {
+		       loader: loader
+		     });
        }
      });
   }

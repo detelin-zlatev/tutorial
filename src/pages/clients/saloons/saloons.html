@@ -28,4 +28,15 @@
 	      </ion-col>
 	    </ion-row>
    </ion-card>
+
+   <ion-card [hidden]="!saloons || saloons.length > 0">
+	  <ion-card-content>
+	    <ion-card-title>
+	      0 намерени
+	    </ion-card-title>
+	    <p>
+	      Няма намерени салони, отговарящи на критериите.
+	    </p>
+	  </ion-card-content>
+   </ion-card>
 </ion-content>

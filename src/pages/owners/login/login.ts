@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import {PublishedPage} from '../published/published'
 import {RegisterPage} from '../register/register'
@@ -21,7 +21,8 @@ export class LoginPage {
   submitAttempt: boolean;
   loginValid: boolean;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, public loginService: LoginService, public storage: Storage,) {
+  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, public loginService: LoginService, public storage: Storage, public navParams: NavParams) {
+      this.navParams.get('loader').dismiss();
       this.userData = this.formBuilder.group({
         email: ['', Validators.required],
         password: ['', Validators.required]

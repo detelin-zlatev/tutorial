@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 
 import {EditPage} from '../edit/edit'
@@ -18,7 +18,7 @@ export class PromotionsPage {
   promotions: any;
   itemId: number;
 
-  constructor(public storage: Storage, public navCtrl: NavController, public modalCtrl: ModalController, public saloonService: SaloonService) {
+  constructor(public storage: Storage, public navCtrl: NavController, public modalCtrl: ModalController, public saloonService: SaloonService, public loadingController: LoadingController) {
     this.loadListData();
   }
 
@@ -37,6 +37,11 @@ export class PromotionsPage {
   }
 
   loadListData() {
+    let loader = this.loadingController.create({
+      content: "Зарежда..."
+    });
+    loader.present();
+
     this.saloonService.promotions = null;
     this.storage.get('itemId').then((id) => {
       if (id && id > 0) {
@@ -45,6 +50,7 @@ export class PromotionsPage {
             this.saloonService.listPromotions(token, this.itemId).
             then(data => {
               this.promotions = data;
+              loader.dismiss();
             });
         });
       }

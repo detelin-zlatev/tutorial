@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController} from 'ionic-angular';
 
 import {PublishPage} from '../publish/publish'
 import {SaloonService} from '../../../providers/saloon-service';
@@ -19,30 +19,43 @@ export class PublishedPage {
   saloonImages: any;
   imagesPath: string;
 
-  constructor(public storage: Storage, public navCtrl: NavController, public saloonService: SaloonService) {
+  constructor(public storage: Storage, public navCtrl: NavController, public saloonService: SaloonService, public navParams: NavParams, public loadingController: LoadingController) {
     this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
     
-    console.log('Reached 0');
     this.storage.get('token').then((token) => {
-        console.log('Reached 1');
         this.saloonService.listSaloons(token).
         then(data => {
-          console.log('Reached 2');
           this.saloons = data.saloons;
           this.saloonImages = data.saloonImages;
+		
+	  this.navParams.get('loader').dismiss();
         });
     });
   }
 
   goToPublish() {
+    let loader = this.loadingController.create({
+      content: "Зарежда..."
+    });
+    loader.present();
+
     this.storage.remove('itemId').then(() => {
-      this.navCtrl.push(PublishPage);
+      this.navCtrl.push(PublishPage, {
+		       loader: loader
+		     });
     });
   }
 
   goToItem(itemId: number) {
+    let loader = this.loadingController.create({
+      content: "Зарежда..."
+    });
+    loader.present();   
+ 
     this.storage.set('itemId', itemId).then(() => {
-      this.navCtrl.push(PublishPage);
+      this.navCtrl.push(PublishPage, {
+		       loader: loader
+		     });
     });
   }
 

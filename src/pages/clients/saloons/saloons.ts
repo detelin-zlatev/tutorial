@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import {SaloonService} from '../../../providers/saloon-service';
 
@@ -19,10 +19,16 @@ export class SaloonsPage {
   public saloons: any;
   public imagesPath: string;
 
-  constructor(public navCtrl: NavController, public saloonService: SaloonService, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public saloonService: SaloonService, public navParams: NavParams, public loadingController: LoadingController) {
+      let loader = this.loadingController.create({
+      content: "Зарежда..."
+    });
+    loader.present();
+
       this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
       this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo')).then(data => {
           this.saloons = data.saloons;
+	  loader.dismiss();
       });
   }
 

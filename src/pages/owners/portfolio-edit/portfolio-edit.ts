@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import {SaloonService} from '../../../providers/saloon-service';
 
@@ -17,7 +17,12 @@ export class PortfolioEditPage {
   submitAttempt: boolean
   portfolioId: number
 
-  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService, public navParams: NavParams) {
+  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService, public navParams: NavParams, public loadingController: LoadingController) {
+    let loader = this.loadingController.create({
+      content: "Зарежда..."
+    });
+    loader.present();
+
     this.portfolioId = navParams.get('item');
     console.log(navParams.get('item'));
 
@@ -33,7 +38,8 @@ export class PortfolioEditPage {
             if (data != null && data.id > 0) {
               this.item.setValue({
                 description: data.description
-              });              
+              });         
+	      loader.dismiss();     
             }
           });
       });
@@ -41,6 +47,10 @@ export class PortfolioEditPage {
   }
 
   save() {
+    let loader = this.loadingController.create({
+      content: "Зарежда..."
+    });
+    loader.present();
     this.submitAttempt = true;
     
     this.storage.get('token').then((token) => {
@@ -51,7 +61,8 @@ export class PortfolioEditPage {
             token
           ).
           then(data => {
-            this.navParams.get("parentPage").loadListData();
+            loader.dismiss();
+	    this.navParams.get("parentPage").loadListData();
             this.navCtrl.pop();
           });
         });

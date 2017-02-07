@@ -1,11 +1,11 @@
 <ion-content class="home" padding>
-  <button ion-button block color="purple" (click)="openCamera()">                
+  <button ion-button block color="purple" (click)="openCamera()" icon-left><ion-icon name='camera'></ion-icon>               
         Снимай с камерата
 	</button>
-	<button ion-button block color="purple" (click)="openAlbums()">                
+	<button ion-button block color="purple" (click)="openAlbums()" icon-left><ion-icon name='folder-open'></ion-icon>              
 		Избери от албуми
 	</button>
-	<button ion-button block color="purple" [hidden]="images.length == 0" (click)="startUploading()">                
+	<button ion-button block color="purple" [hidden]="images.length == 0" (click)="startUploading()"icon-left><ion-icon name='cloud-upload'></ion-icon>              
 		Качване
 	</button>
 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Validators, FormBuilder } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams} from 'ionic-angular';
 
 import {PublishedPage} from '../published/published'
 
@@ -22,8 +22,9 @@ export class DetailsPage {
   public categories: any;
 
   public cities: any;
+  public loading: boolean;
 
-  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService, public metadataService: MetadataService) {
+  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService, public metadataService: MetadataService, public navParams: NavParams) {
     let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
     
     this.item = this.formBuilder.group({
@@ -41,6 +42,7 @@ export class DetailsPage {
     this.storage.get('itemId').then((id) => {
       if (id && id > 0) {
         this.itemId = id;
+        this.loading = true;
         this.storage.get('token').then((token) => {
             this.saloonService.singleSaloon(token, this.itemId).
             then(data => {
@@ -57,9 +59,8 @@ export class DetailsPage {
                   phone2: data.phone_2,
                   phone3: data.phone_3
                 });
-
-                
-              }
+                this.navParams.get('loader').dismiss();
+	      }
             });
         });
       }
@@ -105,7 +106,10 @@ export class DetailsPage {
       this.metadataService.load()
       .then(data => {
         this.categories = data.categories;
-        this.cities = data.cities;    
+        this.cities = data.cities;   
+        if (!this.loading) {
+		this.navParams.get('loader').dismiss();
+	}
       });
   }
 }
