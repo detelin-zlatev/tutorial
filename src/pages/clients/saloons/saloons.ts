@@ -40,4 +40,13 @@ export class SaloonsPage {
     this.navCtrl.push(SearchPage);
   }
 
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      // Load some data here....
+      infiniteScroll.complete();
+    }, 500);
+  }
+
 }
