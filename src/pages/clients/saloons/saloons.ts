@@ -18,15 +18,19 @@ export class SaloonsPage {
 
   public saloons: any;
   public imagesPath: string;
+  public page: number;
+  public size: number;
 
   constructor(public navCtrl: NavController, public saloonService: SaloonService, public navParams: NavParams, public loadingController: LoadingController) {
-      let loader = this.loadingController.create({
+    this.page = 1;
+    this.size = 10;
+    let loader = this.loadingController.create({
       content: "Зарежда..."
     });
     loader.present();
 
       this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
-      this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), 1, 100).then(data => {
+      this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), this.page, this.size).then(data => {
           this.saloons = data.saloons;
 	  loader.dismiss();
       });
@@ -42,11 +46,17 @@ export class SaloonsPage {
 
   doInfinite(infiniteScroll) {
     console.log('Begin async operation');
-
-    setTimeout(() => {
-      // Load some data here....
-      infiniteScroll.complete();
-    }, 500);
+    this.page++;
+    this.saloonService.searches = null;
+    this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), this.page, this.size).then(data => {
+	  if (data.saloons && data.saloons.length > 0) {
+	  	this.saloons = this.saloons.concat(data.saloons);
+	  	infiniteScroll.complete();
+          } else {
+		infiniteScroll.complete();
+		infiniteScroll.enable(false);
+	  }
+	});
   }
 
 }
