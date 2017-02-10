@@ -23,6 +23,19 @@
 	  </ion-card-content>
       </ion-card>
 
+	<ion-card *ngFor="let promotion of saloon.promos">
+	  <ion-card-header color="purple">
+	    {{promotion.name}}
+	  </ion-card-header>
+
+		<ion-card-content>
+	    <h2></h2>
+      <p style="font-size: 0.9em; color: #555555; font-style: italic;">{{promotion.description}}</p>
+      <h6 style="text-decoration: line-through;">Стара цена: {{promotion.old_price}} лева.</h6>
+	    <h6 style="font-weight: bold;">Нова цена: {{promotion.new_price}} лева.</h6>
+		</ion-card-content>
+  </ion-card>
+
   <ion-card>
 	  <ion-card-header>
 	    <ion-icon name='photos' icon-left></ion-icon>
@@ -33,17 +46,4 @@
  		</ion-card-content>
   </ion-card>
       
-
-	<ion-card *ngFor="let promotion of saloon.promotions">
-	  <ion-card-header color="purple">
-	    {{promotion.name}}
-	  </ion-card-header>
-
-		<ion-card-content>
-	    <h2></h2>
-      <p style="font-size: 0.9em; color: #555555; font-style: italic;">{{promotion.description}}</p>
-      <h6>Стара цена: {{promotion.old_price}}.</h6>
-	    <h6>Нова цена: {{promotion.new_price}}.</h6>
-		</ion-card-content>
-  </ion-card>
 </ion-content>
