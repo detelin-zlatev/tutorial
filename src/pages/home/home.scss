@@ -7,7 +7,7 @@ page-home {
 		height: 12%;	
 	}
 
-	@media (min-width: 0px) and (max-width: 319px) and (min-height: 0px) and (max-height: 479px) {
+	@media (min-width: 0px) and (max-width: 319px) and (orientation:portrait) {
 		.bgimg {
 			background-image: url('../assets/img/drawable-port-ldpi-screen.png'); 
 			background-repeat: no-repeat; 
@@ -17,7 +17,7 @@ page-home {
 		}
 	}
 
-	@media (min-width: 320px) and (max-width: 479px) and (min-height: 480px) and (max-height: 799px) {
+	@media (min-width: 320px) and (max-width: 479px) and (orientation:portrait) {
 		.bgimg {
 			background-image: url('../assets/img/drawable-port-mdpi-screen.png'); 
 			background-repeat: no-repeat; 
@@ -27,7 +27,7 @@ page-home {
 		}
 	}
 
-	@media (min-width: 480px) and (max-width: 719px) and (min-height: 800px) and (max-height: 1279px) {
+	@media (min-width: 480px) and (max-width: 719px) and (orientation:portrait) {
 		.bgimg {
 			background-image: url('../assets/img/drawable-port-hdpi-screen.png'); 
 			background-repeat: no-repeat; 
@@ -37,7 +37,7 @@ page-home {
 		}
 	}
 
-	@media (min-width: 720px) and (max-width: 959px) and (min-height: 1280px) and (max-height: 1599px) {
+	@media (min-width: 720px) and (max-width: 959px) and (orientation:portrait) {
 		.bgimg {
 			background-image: url('../assets/img/drawable-port-xhdpi-screen.png'); 
 			background-repeat: no-repeat; 
@@ -61,7 +61,7 @@ page-home {
 
 
 
-	@media (min-width: 0px) and (max-width: 479px) and (min-height: 0px) and (max-height: 319px) {
+	@media (min-width: 0px) and (max-width: 479px) and (orientation:landscape) {
 		.bgimg {
 			background-image: url('../assets/img/drawable-land-ldpi-screen.png'); 
 			background-repeat: no-repeat; 
@@ -71,7 +71,7 @@ page-home {
 		}
 	}
 
-	@media (min-width: 480px) and (max-width: 799px) and (min-height: 320px) and (max-height: 479px) {
+	@media (min-width: 480px) and (max-width: 799px) and (orientation:landscape) {
 		.bgimg {
 			background-image: url('../assets/img/drawable-land-mdpi-screen.png'); 
 			background-repeat: no-repeat; 
@@ -81,7 +81,7 @@ page-home {
 		}
 	}
 
-	@media (min-width: 800px) and (max-width: 1279px) and (min-height: 480px) and (max-height: 719px) {
+	@media (min-width: 800px) and (max-width: 1279px) and (orientation:landscape) {
 		.bgimg {
 			background-image: url('../assets/img/drawable-land-hdpi-screen.png'); 
 			background-repeat: no-repeat; 
@@ -91,7 +91,7 @@ page-home {
 		}
 	}
 
-	@media (min-width: 1280px) and (max-width: 1599px) and (min-height: 720px) and (max-height: 959px) {
+	@media (min-width: 1280px) and (max-width: 1599px) and (orientation:landscape) {
 		.bgimg {
 			background-image: url('../assets/img/drawable-land-xhdpi-screen.png'); 
 			background-repeat: no-repeat; 

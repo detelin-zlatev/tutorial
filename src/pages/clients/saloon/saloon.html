@@ -14,9 +14,9 @@
 	    <p>
 	       {{saloon.city.name}}, {{saloon.address}}
 	    </p>
-            <p>
-	      тел:  {{saloon.phone_1}}
-	    </p>
+            <div>
+				 		<a (click)="call()"><ion-icon name='call'></ion-icon> {{saloon.phone_1}}</a>
+	    </div>
             <p style="font-size: 0.9em; color: #555555; font-style: italic;">
 	      {{saloon.description}}
 	    </p>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import {CallNumber} from 'ionic-native';
+
 import { NavController, NavParams } from 'ionic-angular';
 
 import {AppSettings} from '../../../appSettings';
@@ -16,6 +18,10 @@ export class SaloonPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
       this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
       this.saloon = this.navParams.get('saloon');
+  }
+
+  call() {
+    CallNumber.callNumber(this.saloon.phone_1, true);
   }
 
 }

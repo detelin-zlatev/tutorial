@@ -4,7 +4,10 @@
   </div>
 
    <ion-card (click)="goToSaloon(saloon)" *ngFor="let saloon of saloons">
-	  <img src="{{imagesPath}}{{saloon.portfolios[0] ? saloon.portfolios[0].filepath : '../../img/no_image.png'}}"/>
+		 <div style="float: left; position: relative; margin-bottom: 20px;">
+		 		<img src="{{imagesPath}}{{saloon.portfolios[0] ? saloon.portfolios[0].filepath : '../../img/no_image.png'}}"/>
+	  		<img src="assets/img/promo.png" style="width: 20%;position: absolute; top: 0; left: 0;" [hidden]="!saloon.promos[0]"/>
+		</div>
 	  <ion-card-content>
 	    <ion-card-title>
 	      {{saloon.name}}
@@ -27,7 +30,7 @@
 		</button>
 	      </ion-col>
 	    </ion-row>
-   </ion-card>
+   </ion-card> 
 
    <ion-card [hidden]="!saloons || saloons.length > 0">
 	  <ion-card-content>
