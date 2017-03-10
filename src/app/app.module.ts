@@ -15,6 +15,7 @@ import { PortfolioAddPage } from '../pages/owners/portfolio-add/portfolio-add';
 import { PortfolioEditPage } from '../pages/owners/portfolio-edit/portfolio-edit';
 import { PromotionsPage } from '../pages/owners/promotions/promotions';
 import { EditPage } from '../pages/owners/edit/edit';
+import { MapPage } from '../pages/owners/map/map';
 import { SearchPage } from '../pages/clients/search/search';
 import { SaloonsPage } from '../pages/clients/saloons/saloons';
 import { SaloonPage } from '../pages/clients/saloon/saloon';
@@ -36,7 +37,8 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     SaloonsPage,
     EditPage,
     SaloonPage,
-    DetailsPage
+    DetailsPage,
+    MapPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -58,7 +60,8 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     SaloonsPage,
     EditPage,
     SaloonPage,
-    DetailsPage
+    DetailsPage,
+    MapPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage]
 })

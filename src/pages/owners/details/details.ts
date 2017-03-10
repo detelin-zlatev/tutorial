@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import {Validators, FormBuilder } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
-import { NavController, NavParams} from 'ionic-angular';
+import { NavController, NavParams, ModalController} from 'ionic-angular';
 
 import {PublishedPage} from '../published/published'
+import {MapPage} from '../map/map'
 
 import {SaloonService} from '../../../providers/saloon-service';
 import {MetadataService} from '../../../providers/metadata-service';
@@ -23,8 +24,9 @@ export class DetailsPage {
 
   public cities: any;
   public loading: boolean;
+  public latLng: any;
 
-  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService, public metadataService: MetadataService, public navParams: NavParams) {
+  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService, public metadataService: MetadataService, public navParams: NavParams, public modalCtrl: ModalController) {
     let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
     
     this.item = this.formBuilder.group({
@@ -76,6 +78,7 @@ export class DetailsPage {
 
   save() {
     this.submitAttempt = true;
+    console.log('Lat Lng: ' + this.latLng);
     
     this.storage.get('token').then((token) => {
         this.saloonService.addEditDetails(
@@ -89,6 +92,8 @@ export class DetailsPage {
           this.item.controls['phone1'].value,
           this.item.controls['phone2'].value,
           this.item.controls['phone3'].value,
+	  this.latLng ? this.latLng.lat() : null,
+	  this.latLng ? this.latLng.lng() : null,
           token
 	      ).
         then(data => {
@@ -111,5 +116,12 @@ export class DetailsPage {
 		this.navParams.get('loader').dismiss();
 	}
       });
+  }
+
+  map() {
+    let modal = this.modalCtrl.create(MapPage, {
+       "parentPage": this
+     });
+    modal.present();
   }
 }

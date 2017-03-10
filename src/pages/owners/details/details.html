@@ -1,9 +1,9 @@
 <ion-content>
 
   <div padding>
-    <button ion-button color="purple" block (click)="goToPublished()">Обратно в списъка</button>
-  </div>
-  
+    <button ion-button color="purple" block (click)="goToPublished()" icon-left><ion-icon name='arrow-round-back'></ion-icon>Обратно в списъка</button>
+    <button ion-button color="purple" block (click)="map()" icon-left><ion-icon name='map'></ion-icon>Отбележи на карта</button>
+  </div>  
 <form [formGroup]="item" (ngSubmit)="save()">
   <ion-list>
     <ion-item>

@@ -36,6 +36,8 @@ export class SaloonService {
       	phone1: string,
       	phone2: string,
       	phone3: string,
+	lat: number,
+	lng: number,
 	      token: string) {
     
     if (this.currentDetails) {
@@ -57,6 +59,8 @@ export class SaloonService {
             phone_1: phone1,
             phone_2: phone2,
             phone_3: phone3,
+	    lat: lat,
+	    lng: lng,
             token: token
         });
 
