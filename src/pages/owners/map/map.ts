@@ -14,7 +14,8 @@ export class MapPage {
   map: any;
   
   public selectedLatLng: any;
- 
+  public markers:any = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -49,14 +50,21 @@ export class MapPage {
     let self = this;
     google.maps.event.addListener(this.map, 'click', function(e) {
 			self.selectedLatLng = e.latLng;
+			
+			for (var i = 0; i < self.markers.length; i++) {
+          self.markers[i].setMap(null);
+        }
+			
 			let marker = new google.maps.Marker({
 					map: self.map,
 					animation: google.maps.Animation.DROP,
 					position: e.latLng
 				});
 
+				self.markers.push(marker);
+
 				google.maps.event.addListener(marker, "click", function() {
-						marker.setMap(null)
+						marker.setMap(null);
 				});
 		});
 
@@ -69,8 +77,10 @@ export class MapPage {
 					position: currentLatLng
 				});
 
+				self.markers.push(marker);
+
 				google.maps.event.addListener(marker, "click", function() {
-						marker.setMap(null)
+						marker.setMap(null);
 				});
     }
 
