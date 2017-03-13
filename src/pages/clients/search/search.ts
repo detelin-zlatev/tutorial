@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 
 import {SaloonsPage} from '../saloons/saloons';
 
@@ -21,7 +21,7 @@ export class SearchPage {
   public categoryId: number;
   public promo: boolean;
 
-  constructor(public navCtrl: NavController, public metadataService: MetadataService) {
+  constructor(public navCtrl: NavController, public metadataService: MetadataService, public loadingController: LoadingController) {
       this.loadMetadata();
   }
 
@@ -34,10 +34,15 @@ export class SearchPage {
   }
 
   loadMetadata() {
+    let loader = this.loadingController.create({
+      content: "Зарежда..."
+    });
+    loader.present();	
       this.metadataService.load()
       .then(data => {
         this.categories = data.categories;
         this.cities = data.cities;    
+	loader.dismiss();
       });
   }
 
