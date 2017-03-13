@@ -27,8 +27,10 @@ export class PublishedPage {
         then(data => {
           this.saloons = data.saloons;
           this.saloonImages = data.saloonImages;
-		
-	  this.navParams.get('loader').dismiss();
+          
+          if (this.navParams.get('loader')) {
+	          this.navParams.get('loader').dismiss();
+          }
         });
     });
   }

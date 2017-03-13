@@ -20,6 +20,7 @@ export class SearchPage {
   public cityId: number;
   public categoryId: number;
   public promo: boolean;
+  public closest: boolean = true;
 
   constructor(public navCtrl: NavController, public metadataService: MetadataService, public loadingController: LoadingController) {
       this.loadMetadata();
@@ -29,7 +30,8 @@ export class SearchPage {
     this.navCtrl.push(SaloonsPage, {
        cityId: this.cityId,
        categoryId: this.categoryId,
-       promo: this.promo
+       promo: this.promo,
+       closest: this.closest
      });
   }
 

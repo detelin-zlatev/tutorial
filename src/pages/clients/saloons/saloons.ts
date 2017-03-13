@@ -30,7 +30,7 @@ export class SaloonsPage {
     loader.present();
 
       this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
-      this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), this.page, this.size).then(data => {
+      this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), this.navParams.get('closest'), this.page, this.size).then(data => {
           this.saloons = data.saloons;
 	  loader.dismiss();
       });
@@ -48,7 +48,7 @@ export class SaloonsPage {
     console.log('Begin async operation');
     this.page++;
     this.saloonService.searches = null;
-    this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), this.page, this.size).then(data => {
+    this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), this.navParams.get('closest'), this.page, this.size).then(data => {
 	  if (data.saloons && data.saloons.length > 0) {
 	  	this.saloons = this.saloons.concat(data.saloons);
 	  	infiniteScroll.complete();

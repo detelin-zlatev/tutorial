@@ -10,6 +10,8 @@ import {MapPage} from '../map/map'
 import {SaloonService} from '../../../providers/saloon-service';
 import {MetadataService} from '../../../providers/metadata-service';
 
+declare var google;
+
 @Component({
   selector: 'page-details',
   templateUrl: 'details.html',
@@ -61,6 +63,7 @@ export class DetailsPage {
                   phone2: data.phone_2,
                   phone3: data.phone_3
                 });
+                this.latLng = new google.maps.LatLng(data.lat, data.lng); 
                 this.navParams.get('loader').dismiss();
 	      }
             });
@@ -92,8 +95,8 @@ export class DetailsPage {
           this.item.controls['phone1'].value,
           this.item.controls['phone2'].value,
           this.item.controls['phone3'].value,
-	  this.latLng ? this.latLng.lat() : null,
-	  this.latLng ? this.latLng.lng() : null,
+          this.latLng ? this.latLng.lat() : null,
+          this.latLng ? this.latLng.lng() : null,
           token
 	      ).
         then(data => {

@@ -24,6 +24,11 @@
     <ion-label>В промоция</ion-label>
     <ion-toggle checked="false" [(ngModel)]="promo"></ion-toggle>
   </ion-item>
+
+  <ion-item>
+    <ion-label>Покажи най-близки</ion-label>
+    <ion-toggle checked="true" [(ngModel)]="closest"></ion-toggle>
+  </ion-item>
   
   <div padding>
   <button ion-button block (click)="goToSaloons()" icon-left color="purple"><ion-icon name='search'></ion-icon> Търси</button>

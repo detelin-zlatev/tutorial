@@ -19,10 +19,10 @@ export class MapPage {
   }
 
   closeMap() {
-	if (this.selectedLatLng) {
-		this.navParams.get("parentPage").latLng = this.selectedLatLng;
-	}
-	this.navCtrl.pop();	
+		if (this.selectedLatLng) {
+			this.navParams.get("parentPage").latLng = this.selectedLatLng;
+		}
+		this.navCtrl.pop();	
   }
 
   ionViewDidLoad(){
@@ -30,12 +30,12 @@ export class MapPage {
   }
  
   loadMap(){
-	let currentLatLng = this.navParams.get("parentPage").latLng; 	
+		let currentLatLng = this.navParams.get("parentPage").latLng; 	
 	
-	let centerLatLng = new google.maps.LatLng(-34.9290, 138.6010);
-	if (currentLatLng) {
-		centerLatLng = currentLatLng;
-	}
+		let centerLatLng = new google.maps.LatLng(-34.9290, 138.6010);
+		if (currentLatLng) {
+			centerLatLng = currentLatLng;
+		}
     
  
     let mapOptions = {
@@ -48,29 +48,30 @@ export class MapPage {
 
     let self = this;
     google.maps.event.addListener(this.map, 'click', function(e) {
-	self.selectedLatLng = e.latLng;
-	let marker = new google.maps.Marker({
-	    map: self.map,
-	    animation: google.maps.Animation.DROP,
-	    position: e.latLng
-	  });
+			self.selectedLatLng = e.latLng;
+			let marker = new google.maps.Marker({
+					map: self.map,
+					animation: google.maps.Animation.DROP,
+					position: e.latLng
+				});
 
-	  google.maps.event.addListener(marker, "click", function() {
-		    marker.setMap(null)
+				google.maps.event.addListener(marker, "click", function() {
+						marker.setMap(null)
+				});
 		});
-	});
 
+		console.log(currentLatLng);
 
     if (currentLatLng) {
-	let marker = new google.maps.Marker({
-	    map: self.map,
-	    animation: google.maps.Animation.DROP,
-	    position: currentLatLng
-	  });
+			let marker = new google.maps.Marker({
+					map: self.map,
+					animation: google.maps.Animation.DROP,
+					position: currentLatLng
+				});
 
-	  google.maps.event.addListener(marker, "click", function() {
-		    marker.setMap(null)
-		});
+				google.maps.event.addListener(marker, "click", function() {
+						marker.setMap(null)
+				});
     }
 
         
