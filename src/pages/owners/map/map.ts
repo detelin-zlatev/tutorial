@@ -1,6 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 
-import { NavController, NavParams} from 'ionic-angular';
+import { NavController, NavParams, LoadingController} from 'ionic-angular';
+
+import { Geolocation } from 'ionic-native';
 
 declare var google;
 
@@ -16,7 +18,7 @@ export class MapPage {
   public selectedLatLng: any;
   public markers:any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingController: LoadingController) {
   }
 
   closeMap() {
@@ -33,14 +35,37 @@ export class MapPage {
   loadMap(){
 		let currentLatLng = this.navParams.get("parentPage").latLng; 	
 	
-		let centerLatLng = new google.maps.LatLng(-34.9290, 138.6010);
+    let centerLatLng = null;
+		let self = this;
 		if (currentLatLng) {
 			centerLatLng = currentLatLng;
+			self.setupAndDisplayMap(currentLatLng, currentLatLng);
+		} else {
+			let loader = this.loadingController.create({
+				content: "Определяне на местоположение..."
+			});
+			loader.present();
+
+			Geolocation.getCurrentPosition().then((resp) => {
+				centerLatLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+				loader.dismiss();
+				self.setupAndDisplayMap(centerLatLng, null);
+			}).catch((error) => {
+				console.log('Error getting location', error);
+			});
 		}
     
  
-    let mapOptions = {
-      center: centerLatLng,
+    
+
+        
+ 
+  }
+
+
+	setupAndDisplayMap(center:any, current: any) {
+		let mapOptions = {
+      center: center,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
@@ -68,13 +93,11 @@ export class MapPage {
 				});
 		});
 
-		console.log(currentLatLng);
-
-    if (currentLatLng) {
+		if (current) {
 			let marker = new google.maps.Marker({
 					map: self.map,
 					animation: google.maps.Animation.DROP,
-					position: currentLatLng
+					position: current
 				});
 
 				self.markers.push(marker);
@@ -83,8 +106,5 @@ export class MapPage {
 						marker.setMap(null);
 				});
     }
-
-        
- 
-  }
+	}
 }

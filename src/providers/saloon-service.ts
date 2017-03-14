@@ -360,7 +360,7 @@ export class SaloonService {
   }
 
 
-  searchSaloons(city_id: number, category_id: number, promo: boolean, closest: boolean, page: number, size: number) {
+  searchSaloons(city_id: number, category_id: number, promo: boolean, closest: boolean, lat: number, lng: number, page: number, size: number) {
     
     if (this.searches) {
         return Promise.resolve(this.searches);
@@ -375,6 +375,8 @@ export class SaloonService {
             category_id: category_id,
             promo: promo,
             closest: closest,
+            lat: lat,
+            lng: lng,
             page: page,
             size: size
         });
