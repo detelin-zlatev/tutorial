@@ -7,8 +7,8 @@
 		<ion-item *ngFor="let promotion of promotions">
 				<h2>{{promotion.name}}</h2>
 				<p>{{promotion.description}}</p>
-				<h6>Стара цена: {{promotion.old_price}}</h6>
-				<h6>Нова цена: {{promotion.new_price}}</h6>
+				<h6>От дата: {{promotion.old_price}}</h6>
+				<h6>До дата: {{promotion.new_price}}</h6>
 				<button ion-button clear item-right (click)="goToItem(promotion.id)" color="purple">Промени</button>
 				<button ion-button clear item-right (click)="delete(promotion.id)" color="purple">Изтрий</button>
 		</ion-item>

@@ -18,6 +18,10 @@
 	  </ion-card-content>
 
 	  <ion-row no-padding>
+	      <ion-col text-left style="padding-top: 10px;" [hidden]="!closest">
+	        <ion-icon name="walk" color="secondary"></ion-icon>  
+		<ion-badge item-left color="secondary">12.1 км</ion-badge>
+	      </ion-col>
               <ion-col text-right>
 		<button ion-button clear small icon-left color="purple">
 		  {{saloon.category.name}}

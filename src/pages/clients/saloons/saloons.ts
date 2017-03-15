@@ -24,6 +24,7 @@ export class SaloonsPage {
   public size: number;
   public lat: number;
   public lng: number;
+  public closest: boolean;
 
   constructor(public navCtrl: NavController, public saloonService: SaloonService, public navParams: NavParams, public loadingController: LoadingController) {
     this.page = 1;
@@ -34,18 +35,27 @@ export class SaloonsPage {
     loader.present();
 
     this.imagesPath = AppSettings.API_ENDPOINT + 'img/upload/';
-
-    Geolocation.getCurrentPosition().then((resp) => {
-      this.lat = resp.coords.latitude;
-      this.lng = resp.coords.longitude;
+    this.closest = this.navParams.get('closest');
     
-      this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), this.navParams.get('closest'), this.lat, this.lng, this.page, this.size).then(data => {
-          this.saloons = data.saloons;
-	        loader.dismiss();
-      });
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+    if (this.closest) {
+	    Geolocation.getCurrentPosition().then((resp) => {
+	      this.lat = resp.coords.latitude;
+	      this.lng = resp.coords.longitude;
+	    
+	      this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), this.navParams.get('closest'), this.lat, this.lng, this.page, this.size).then(data => {
+		  this.saloons = data.saloons;
+			loader.dismiss();
+	      });
+	    }).catch((error) => {
+	      console.log('Error getting location', error);
+              loader.dismiss();
+	    });
+    } else {
+	this.saloonService.searchSaloons(this.navParams.get('cityId'), this.navParams.get('categoryId'), this.navParams.get('promo'), this.navParams.get('closest'), this.lat, this.lng, this.page, this.size).then(data => {
+		  this.saloons = data.saloons;
+			loader.dismiss();
+	      });
+    }
   }
 
   goToSaloon(saloon: any) {

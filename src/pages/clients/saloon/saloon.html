@@ -14,7 +14,10 @@
 	    <p>
 	       {{saloon.city.name}}, {{saloon.address}}
 	    </p>
-            <div>
+	    <div [hidden]="saloon.lat == null">
+	        <a (click)="map()" color="purple"><ion-icon name='map'></ion-icon> виж на картата</a>
+            </div>
+		<div>
 				 		<a (click)="call()"><ion-icon name='call'></ion-icon> {{saloon.phone_1}}</a>
 	    </div>
             <p style="font-size: 0.9em; color: #555555; font-style: italic;">
@@ -31,8 +34,8 @@
 		<ion-card-content>
 	    <h2></h2>
       <p style="font-size: 0.9em; color: #555555; font-style: italic;">{{promotion.description}}</p>
-      <h6 style="text-decoration: line-through;">Стара цена: {{promotion.old_price}} лева.</h6>
-	    <h6 style="font-weight: bold;">Нова цена: {{promotion.new_price}} лева.</h6>
+      <h6 style="font-weight: bold;">От дата: {{promotion.old_price}} лева.</h6>
+	    <h6 style="font-weight: bold;">До дата: {{promotion.new_price}} лева.</h6>
 		</ion-card-content>
   </ion-card>
 

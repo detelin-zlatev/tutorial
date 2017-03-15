@@ -19,6 +19,7 @@ import { MapPage } from '../pages/owners/map/map';
 import { SearchPage } from '../pages/clients/search/search';
 import { SaloonsPage } from '../pages/clients/saloons/saloons';
 import { SaloonPage } from '../pages/clients/saloon/saloon';
+import { MapPosPage } from '../pages/clients/mappos/mappos';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     EditPage,
     SaloonPage,
     DetailsPage,
-    MapPage
+    MapPage,
+MapPosPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -61,7 +63,8 @@ import { SaloonPage } from '../pages/clients/saloon/saloon';
     EditPage,
     SaloonPage,
     DetailsPage,
-    MapPage
+    MapPage,
+MapPosPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage]
 })
