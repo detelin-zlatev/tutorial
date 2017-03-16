@@ -63,7 +63,9 @@ export class DetailsPage {
                   phone2: data.phone_2,
                   phone3: data.phone_3
                 });
-                this.latLng = new google.maps.LatLng(data.lat, data.lng); 
+		if (data.lat != null && data.lng != null) {
+                	this.latLng = new google.maps.LatLng(data.lat, data.lng); 
+		}
                 this.navParams.get('loader').dismiss();
 	      }
             });
