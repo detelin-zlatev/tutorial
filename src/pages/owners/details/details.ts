@@ -45,6 +45,8 @@ export class DetailsPage {
 
     this.storage.get('itemId').then((id) => {
       if (id && id > 0) {
+        this.navCtrl.parent.getByIndex(1).enabled = true;
+	this.navCtrl.parent.getByIndex(2).enabled = true;
         this.itemId = id;
         this.loading = true;
         this.storage.get('token').then((token) => {
@@ -70,7 +72,10 @@ export class DetailsPage {
 	      }
             });
         });
-      }
+      } else {
+	this.navCtrl.parent.getByIndex(1).enabled = false;
+	this.navCtrl.parent.getByIndex(2).enabled = false;      
+	}
       this.loadMetadata();
     });
   }
@@ -104,6 +109,8 @@ export class DetailsPage {
         then(data => {
           if (data != null && data.id > 0) {
               this.storage.set('itemId', data.id).then(() => {
+		this.navCtrl.parent.getByIndex(1).enabled = true;
+		this.navCtrl.parent.getByIndex(2).enabled = true;
                 this.navCtrl.parent.select(1);
               });
           }
