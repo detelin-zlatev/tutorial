@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Validators, FormBuilder } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
-import { NavController, NavParams, ModalController} from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController} from 'ionic-angular';
 
 import {PublishedPage} from '../published/published'
 import {MapPage} from '../map/map'
@@ -28,7 +28,7 @@ export class DetailsPage {
   public loading: boolean;
   public latLng: any;
 
-  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService, public metadataService: MetadataService, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public storage: Storage, public navCtrl: NavController, private formBuilder: FormBuilder, public saloonService: SaloonService, public metadataService: MetadataService, public navParams: NavParams, public modalCtrl: ModalController, public alertCtrl: AlertController) {
     let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
     
     this.item = this.formBuilder.group({
@@ -91,7 +91,7 @@ export class DetailsPage {
     console.log('Lat Lng: ' + this.latLng);
     
     this.storage.get('token').then((token) => {
-        this.saloonService.addEditDetails(
+	this.saloonService.addEditDetails(
           this.itemId,
           this.item.controls['category'].value, 
           this.item.controls['name'].value,
@@ -109,6 +109,15 @@ export class DetailsPage {
         then(data => {
           if (data != null && data.id > 0) {
               this.storage.set('itemId', data.id).then(() => {
+		if (!this.itemId) {
+			let alert = this.alertCtrl.create({
+			      title: 'Добавен салон',
+			      subTitle: 'Вашият салон беше въведен успешно!',
+			      buttons: ['OK']
+			    });
+			    alert.present();	
+		}
+
 		this.navCtrl.parent.getByIndex(1).enabled = true;
 		this.navCtrl.parent.getByIndex(2).enabled = true;
                 this.navCtrl.parent.select(1);

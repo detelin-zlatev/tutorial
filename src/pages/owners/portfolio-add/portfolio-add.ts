@@ -93,6 +93,13 @@ export class PortfolioAddPage {
             this.upload(this.images[this.current - 1]);
         } else {   
             this.uploading = false;
+
+	    let alert = this.alertController.create({
+			      title: 'Качена снимка',
+			      subTitle: 'Вашата снимка беше качена успешно!',
+			      buttons: ['OK']
+			    });
+			    alert.present();
         }
     }
             
